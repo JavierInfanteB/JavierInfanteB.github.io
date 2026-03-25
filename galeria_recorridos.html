@@ -84,38 +84,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .tour-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 */
-            background: #e2e8f0;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid #b08d57; /* Borde Dorado */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .tour-container iframe, .tour-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .play-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(138, 21, 56, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        .play-overlay:hover {
-            background: rgba(138, 21, 56, 0.1);
-        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -164,65 +132,43 @@
         </header>
 
         <main class="w-full">
-            <!-- Localidades Section at Top -->
-            <section class="max-w-5xl mx-auto px-6 py-8">
-                <div class="bg-white border-2 border-unam-gold p-8 rounded-xl shadow-xl text-center scroll-reveal">
-                    <h2 class="font-serif text-3xl font-bold text-unam-red mb-4 uppercase tracking-widest">Localidades Mineralógicas</h2>
-                    <p class="text-geology-dark/80 mb-6 max-w-2xl mx-auto text-lg">
-                        Complementa tu experiencia virtual explorando nuestro catálogo detallado de localidades geológicas en México.
-                    </p>
-                    <a href="localidades.html" class="inline-flex items-center bg-unam-red text-white hover:bg-unam-gold font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-xl">
-                        Explorar Localidades
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </a>
-                </div>
-            </section>
-
             <!-- Hero Section -->
             <section class="hero-container min-h-[30vh] flex flex-col items-center justify-center text-center px-4 py-12">
-                <span class="text-outline-bg">Recorridos VR</span>
+                <span class="text-outline-bg">Galería</span>
                 <div class="relative z-10">
-                    <h1 class="font-serif text-4xl md:text-6xl font-bold text-unam-red mb-2 tracking-tight">Recorridos VR</h1>
+                    <h1 class="font-serif text-4xl md:text-6xl font-bold text-unam-red mb-2 tracking-tight">Galería</h1>
                     <p class="text-lg md:text-xl text-geology-dark/70 font-light italic max-w-2xl mx-auto">
-                        Explora los laboratorios y edificios de nuestra facultad desde cualquier lugar.
+                        Fotos de campo en cada lugar de las excursiones mineralógicas.
                     </p>
                 </div>
             </section>
 
-            <!-- Building Cards - Horizontal Layout -->
+            <!-- Gallery Grid -->
             <section class="max-w-6xl mx-auto px-6 py-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Edificio J Card -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-l-8 border-unam-red scroll-reveal">
-                        <div class="mb-6 text-center">
-                            <h2 class="font-serif text-2xl md:text-3xl font-bold text-unam-red uppercase">Edificio J</h2>
-                            <p class="text-geology-dark/80 mt-1 text-base font-semibold">Geología Física</p>
-                            <p class="text-geology-dark/60 mt-2 italic text-sm font-semibold uppercase tracking-widest">Haz clic en la imagen para iniciar el recorrido</p>
+                <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-unam-gold">
+                    <h2 class="font-serif text-2xl font-bold text-unam-red mb-6 text-center uppercase">
+                        Fotografías de Localidades Mineralógicas
+                    </h2>
+                    <p class="text-center text-geology-dark/70 mb-8 italic">
+                        Proximamente: Galería completa de imágenes de campo organizadas por localidad.
+                    </p>
+                    
+                    <!-- Placeholder para futuras imágenes -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-geology-beige p-6 rounded-lg border border-unam-gold/30 flex items-center justify-center min-h-[200px]">
+                            <svg class="w-16 h-16 text-unam-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
                         </div>
-                        <div class="tour-container" id="tour-1">
-                            <img src="Imagenes/Recorrido3.png" alt="Miniatura Edificio J">
-                            <div class="play-overlay">
-                                <div class="w-16 h-16 bg-unam-red rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition">
-                                    <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                            </div>
+                        <div class="bg-geology-beige p-6 rounded-lg border border-unam-gold/30 flex items-center justify-center min-h-[200px]">
+                            <svg class="w-16 h-16 text-unam-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
                         </div>
-                    </div>
-
-                    <!-- Edificio C Card -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg border-l-8 border-unam-gold scroll-reveal">
-                        <div class="mb-6 text-center">
-                            <h2 class="font-serif text-2xl md:text-3xl font-bold text-unam-red uppercase">Edificio G</h2>
-                            <p class="text-geology-dark/80 mt-1 text-base font-semibold">Laboratorios</p>
-                            <p class="text-geology-dark/60 mt-2 italic text-sm font-semibold uppercase tracking-widest">Haz clic en la imagen para iniciar el recorrido</p>
-                        </div>
-                        <div class="tour-container" id="tour-2">
-                            <img src="Imagenes/Recorrido4.png" alt="Miniatura Edificio G">
-                            <div class="play-overlay">
-                                <div class="w-16 h-16 bg-unam-gold rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition">
-                                    <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                            </div>
+                        <div class="bg-geology-beige p-6 rounded-lg border border-unam-gold/30 flex items-center justify-center min-h-[200px]">
+                            <svg class="w-16 h-16 text-unam-gold/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -240,26 +186,6 @@
     </div>
 
     <script>
-        function loadTour(tourId, videoUrl) {
-            const container = document.getElementById(tourId);
-            const iframe = document.createElement('iframe');
-            iframe.setAttribute('src', videoUrl);
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allowfullscreen', '1');
-            iframe.setAttribute('allow', 'camera; microphone; vr; autoplay; encrypted-media');
-            container.innerHTML = '';
-            container.appendChild(iframe);
-            container.style.cursor = 'default';
-        }
-
-        document.getElementById('tour-1').addEventListener('click', function() {
-            loadTour('tour-1', 'https://ingenieria-unam.netlify.app/');
-        });
-
-        document.getElementById('tour-2').addEventListener('click', function() {
-            loadTour('tour-2', 'https://kuula.co/share/collection/7JJqT?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1');
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
