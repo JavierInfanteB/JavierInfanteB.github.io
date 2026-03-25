@@ -65,6 +65,42 @@
 
         /* CORRECCIÓN: Se cambió 'shadow:' por 'box-shadow:' para eliminar el error */
         .tag-category { background: #8a1538; color: white; padding: 6px 20px; border-radius: 99px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        
+        /* Estilos para los tours VR */
+        .tour-container-3d {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #e2e8f0;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid #b08d57;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .tour-container-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(138, 21, 56, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .play-overlay:hover {
+            background: rgba(138, 21, 56, 0.1);
+        }
+        
+        /* Estilos para los botones de filtro */
+        .filter-btn.active {
+            background: #8a1538 !important;
+            color: white !important;
+        }
     </style>
 </head>
 <body>
@@ -80,25 +116,26 @@
                         </a>
                     </div>
                     
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer">&#9776;</label>
+                    
+                    <ul class="nav-menu absolute top-full left-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
+                        <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
+                        <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
+                        <li><a href="localidades.html" class="nav-link text-geology-dark transition duration-200">Localidades</a></li>
+                        <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
+                        <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
+                        <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
+                    </ul>
+                    
                     <div class="text-center flex-1">
                         <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
-                            GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO
+                            GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO Y LIBRO SOBRE EL ACERVO HISTORICO DE LAS COLECCIONES Y EL EQUIPO ANTIGUO DEL LABORATORIO DE MINERALOGIA DE LA FACULTAD DE INGENIERIA
                         </h1>
                         <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
                             PAPIME PE108024
                         </p>
                     </div>
-                    
-                    <input type="checkbox" id="menu-toggle" class="hidden">
-                    <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer">&#9776;</label>
-                    
-                    <ul class="nav-menu absolute top-full right-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
-                        <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
-                        <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
-                        <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
-                        <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
-                        <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
-                    </ul>
 
                     <div class="w-20 md:w-28 lg:w-32">
                         <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
@@ -114,47 +151,89 @@
     <main class="container mx-auto px-6 py-12">
         <section class="mb-16">
             <h1 class="hero-title">Modelos 3D</h1>
-            <p class="text-xl text-unam-gold font-bold italic mt-2">Muestras de Minerales y Equipo Histórico FI-UNAM</p>
+            <p class="text-xl text-unam-gold font-bold italic mt-2">Muestras de Minerales, Laboratorios y Equipo Histórico FI-UNAM</p>
         </section>
 
+        <!-- Filtros de categoría -->
+        <div class="flex justify-center gap-4 mb-12 flex-wrap">
+            <button onclick="filterCategory('all')" id="filter-all" class="filter-btn bg-unam-red text-white px-6 py-3 rounded-full font-bold uppercase text-sm tracking-wider shadow-lg transition hover:bg-unam-gold">
+                Todos
+            </button>
+            <button onclick="filterCategory('minerales')" id="filter-minerales" class="filter-btn bg-white text-geology-dark px-6 py-3 rounded-full font-bold uppercase text-sm tracking-wider shadow-lg border-2 border-unam-gold transition hover:bg-unam-gold hover:text-white">
+                Minerales y Rocas
+            </button>
+            <button onclick="filterCategory('laboratorio')" id="filter-laboratorio" class="filter-btn bg-white text-geology-dark px-6 py-3 rounded-full font-bold uppercase text-sm tracking-wider shadow-lg border-2 border-unam-gold transition hover:bg-unam-gold hover:text-white">
+                Laboratorio
+            </button>
+            <button onclick="filterCategory('objetos')" id="filter-objetos" class="filter-btn bg-white text-geology-dark px-6 py-3 rounded-full font-bold uppercase text-sm tracking-wider shadow-lg border-2 border-unam-gold transition hover:bg-unam-gold hover:text-white">
+                Objetos
+            </button>
+        </div>
+
         <div class="slider-container">
-            <div class="item active">
+            <div class="item active" data-category="minerales">
                 <div class="tag-category">Minerales - Charcas, SLP</div>
                 <iframe title="Danburita" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/8dc0768c69f34d49a926cd5bb4fc05ba/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Danburita</p>
             </div>
 
-            <div class="item">
+            <div class="item" data-category="laboratorio">
+                <div class="tag-category">Laboratorio - Recorrido VR</div>
+                <div class="tour-container-3d" onclick="loadTour('tour-lab-1', 'https://ingenieria-unam.netlify.app/')">
+                    <img src="Imagenes/Recorrido3.png" alt="Edificio J">
+                    <div class="play-overlay">
+                        <div class="w-16 h-16 bg-unam-red rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Edificio J - Geología Física</p>
+            </div>
+
+            <div class="item" data-category="laboratorio">
+                <div class="tag-category">Laboratorio - Recorrido VR</div>
+                <div class="tour-container-3d" onclick="loadTour('tour-lab-2', 'https://kuula.co/share/collection/7JJqT?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1')">
+                    <img src="Imagenes/Recorrido4.png" alt="Edificio G">
+                    <div class="play-overlay">
+                        <div class="w-16 h-16 bg-unam-gold rounded-full flex items-center justify-center shadow-lg">
+                            <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Edificio G - Laboratorios</p>
+            </div>
+
+            <div class="item" data-category="objetos">
                 <div class="tag-category">Equipo Óptico Antiguo</div>
                 <iframe title="Goniómetro" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/471f62c48f014386b3884bddec67cfe6/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Goniómetro de Precisión</p>
             </div>
 
-            <div class="item">
+            <div class="item" data-category="objetos">
                 <div class="tag-category">Equipo Óptico Antiguo</div>
                 <iframe title="Oculares" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/d0d84be89b144be49028df04e76fb590/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Set de Oculares Históricos</p>
             </div>
 
-            <div class="item">
+            <div class="item" data-category="objetos">
                 <div class="tag-category">Equipo Óptico Antiguo</div>
                 <iframe title="Microscopio FI UNAM" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/3056a2b440524c69968141cda971da07/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Microscopio FI UNAM</p>
             </div>
 
-            <div class="item">
+            <div class="item" data-category="objetos">
                 <div class="tag-category">Equipo Óptico Antiguo</div>
                 <iframe title="Microscopio en Caja" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/f658b12a6fcc4ac990e62ffb7100c5b0/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Microscopio de Conservación</p>
             </div>
 
-            <div class="item">
+            <div class="item" data-category="objetos">
                 <div class="tag-category">Maquetas de Ingeniería</div>
                 <iframe title="Maqueta de pozo de perforación FI UNAM" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/ba6e5670b2f44e54b4170b303498c300/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Pozo de Perforación FI UNAM</p>
             </div>
 
-            <div class="item">
+            <div class="item" data-category="objetos">
                 <div class="tag-category">Equipo de Oficina Histórico</div>
                 <iframe title="Máquina de escribir" frameborder="0" allowfullscreen allow="autoplay; xr-spatial-tracking" src="https://sketchfab.com/models/1db83b1ff2cb4ab7ab878c8330bc43bc/embed?autostart=1"></iframe>
                 <p class="mt-6 text-2xl font-black uppercase tracking-tighter text-unam-red">Máquina de Escribir Antigua</p>
@@ -181,18 +260,89 @@
     <script>
         const items = document.querySelectorAll('.item');
         let currentItem = 0;
+        let filteredItems = Array.from(items);
+
+        function updateCarousel() {
+            filteredItems.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentItem) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        function filterCategory(category) {
+            // Update filter button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('filter-' + category).classList.add('active');
+
+            // Filter items
+            if (category === 'all') {
+                filteredItems = Array.from(items);
+            } else {
+                filteredItems = Array.from(items).filter(item => 
+                    item.getAttribute('data-category') === category
+                );
+            }
+
+            // Reset to first item
+            currentItem = 0;
+            
+            // Hide all items
+            items.forEach(item => {
+                item.classList.remove('active');
+                item.style.display = 'none';
+            });
+
+            // Show only filtered items
+            filteredItems.forEach(item => {
+                item.style.display = 'flex';
+            });
+
+            // Show first filtered item
+            if (filteredItems.length > 0) {
+                filteredItems[0].classList.add('active');
+            }
+        }
+
+        function loadTour(containerId, videoUrl) {
+            const container = document.querySelector(`[onclick*="${containerId}"]`);
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('src', videoUrl);
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allowfullscreen', '1');
+            iframe.setAttribute('allow', 'camera; microphone; vr; autoplay; encrypted-media');
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.borderRadius = '1.5rem';
+            iframe.style.border = '2px solid #b08d57';
+            container.innerHTML = '';
+            container.appendChild(iframe);
+            container.style.cursor = 'default';
+        }
 
         document.getElementById('next').onclick = () => {
-            items[currentItem].classList.remove('active');
-            currentItem = (currentItem + 1) % items.length;
-            items[currentItem].classList.add('active');
+            if (filteredItems.length > 0) {
+                filteredItems[currentItem].classList.remove('active');
+                currentItem = (currentItem + 1) % filteredItems.length;
+                filteredItems[currentItem].classList.add('active');
+            }
         };
 
         document.getElementById('prev').onclick = () => {
-            items[currentItem].classList.remove('active');
-            currentItem = (currentItem - 1 + items.length) % items.length;
-            items[currentItem].classList.add('active');
+            if (filteredItems.length > 0) {
+                filteredItems[currentItem].classList.remove('active');
+                currentItem = (currentItem - 1 + filteredItems.length) % filteredItems.length;
+                filteredItems[currentItem].classList.add('active');
+            }
         };
+
+        // Initialize with all items visible
+        document.addEventListener('DOMContentLoaded', () => {
+            filterCategory('all');
+        });
     </script>
 </body>
 </html>
