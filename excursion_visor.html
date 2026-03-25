@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visor de Guía - UNAM</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="Imagenes/escudo.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -31,6 +32,26 @@
             color: #2c2c2c; 
             font-family: 'Inter', sans-serif; 
             overflow-x: hidden; 
+        }
+        
+        #menu-toggle:checked ~ .nav-menu {
+            display: flex;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .nav-link:hover {
+            color: #8a1538 !important;
         }
 
         .main-frame { 
@@ -67,40 +88,53 @@
             background: #8a1538; 
             color: #f5f2eb; 
         }
-        
-        .link-regresar {
-            margin-top: 1.5rem;
-            text-decoration: underline;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #b08d57;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: color 0.3s;
-        }
-        .link-regresar:hover { color: #8a1538; }
-
-        .header-visor {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
     </style>
 </head>
 <body>
+    <div class="container mx-auto">
+        <header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-sm border-b-4 border-unam-gold">
+            <div class="py-4 px-6 md:px-10">
+                <nav class="relative">
+                    <div class="flex items-center justify-between">
+                        <div class="w-20 md:w-28 lg:w-32">
+                            <a href="https://www.ingenieria.unam.mx" target="_blank" rel="noopener noreferrer">
+                                <img src="Imagenes/escudo_fi.png" alt="Logo Facultad de Ingeniería UNAM" 
+                                    class="rounded-lg hover:scale-105 transition duration-300">
+                            </a>
+                        </div>
+                        
+                        <div class="text-center flex-1">
+                            <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
+                                GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO
+                            </h1>
+                            <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                                PAPIME PE108024
+                            </p>
+                        </div>
+                        
+                        <input type="checkbox" id="menu-toggle" class="hidden">
+                        <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer">&#9776;</label>
+                        
+                        <ul class="nav-menu absolute top-full right-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
+                            <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
+                            <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
+                            <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
+                            <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
+                            <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
+                        </ul>
+
+                        <div class="w-20 md:w-28 lg:w-32">
+                            <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
+                                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" 
+                                    alt="Logo UNAM" class="rounded-lg hover:scale-105 transition duration-300">
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
 
     <div class="main-frame">
-        <div class="header-visor">
-            <div class="w-24 md:w-32">
-                <img src="Imagenes/escudo_fi.png" alt="Logo FI">
-            </div>
-            <div class="w-24 md:w-32 text-right">
-                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" alt="Logo UNAM">
-            </div>
-        </div>
 
         <h1 id="ex-title" class="font-serif text-4xl md:text-6xl font-bold mb-8 tracking-tight uppercase text-unam-red text-center">Cargando...</h1>
 
@@ -115,6 +149,22 @@
                 <button id="btn-siguiente" class="btn-nav">SIGUIENTE</button>
             </div>
         </div>
+    </div>
+
+    <footer class="bg-white mt-12 py-10 px-6 text-center rounded-t-xl shadow-inner border-t-4 border-unam-red">
+        <p class="text-geology-dark font-bold text-base mb-3">© 2026 UNAM - Facultad de Ingeniería. Todos los derechos reservados.</p>
+        <div class="social-media flex justify-center space-x-6">
+            <a href="https://www.facebook.com/UNAM.MX.Oficial/" target="_blank" class="hover:scale-110 transition-transform">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="w-7 h-7">
+            </a>
+            <a href="https://twitter.com/UNAM_MX" target="_blank" class="hover:scale-110 transition-transform">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="w-7 h-7">
+            </a>
+            <a href="https://www.instagram.com/unam_mx/" target="_blank" class="hover:scale-110 transition-transform">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" class="w-7 h-7">
+            </a>
+        </div>
+    </footer>
     </div>
 
     <script>
