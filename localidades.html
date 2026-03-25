@@ -28,6 +28,26 @@
     <style>
         body { background-color: #f5f2eb; color: #2c2c2c; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         
+        #menu-toggle:checked ~ .nav-menu {
+            display: flex;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .nav-link:hover {
+            color: #8a1538 !important;
+        }
+        
         .text-outline-bg {
             position: absolute;
             font-size: 8rem;
@@ -40,10 +60,6 @@
             pointer-events: none;
             text-transform: uppercase;
         }
-
-        /* Estilo Menú más grande */
-        .nav-link { font-size: 1.25rem; font-weight: 700; transition: color 0.3s; }
-        .nav-link:hover { color: #8a1538; }
 
         .carousel-viewport { display: none; opacity: 0; transition: opacity 0.8s ease; }
         .carousel-viewport.active { display: block; opacity: 1; }
@@ -107,24 +123,46 @@
 </head>
 <body>
 
-    <header class="sticky top-0 z-50 w-full bg-white/90 shadow-md backdrop-blur-sm border-b border-unam-gold/30">
-        <nav class="container mx-auto py-6 px-10 flex items-center justify-between">
-            <div class="w-24 md:w-32">
-                <img src="Imagenes/escudo_fi.png" alt="Logo FI">
-            </div>
+    <header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-sm border-b-4 border-unam-gold">
+        <div class="py-4 px-6 md:px-10">
+            <nav class="relative">
+                <div class="flex items-center justify-between">
+                    <div class="w-20 md:w-28 lg:w-32">
+                        <a href="https://www.ingenieria.unam.mx" target="_blank" rel="noopener noreferrer">
+                            <img src="Imagenes/escudo_fi.png" alt="Logo Facultad de Ingeniería UNAM" 
+                                class="rounded-lg hover:scale-105 transition duration-300">
+                        </a>
+                    </div>
+                    
+                    <div class="text-center flex-1">
+                        <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
+                            GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO
+                        </h1>
+                        <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                            PAPIME PE108024
+                        </p>
+                    </div>
+                    
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer">&#9776;</label>
+                    
+                    <ul class="nav-menu absolute top-full right-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
+                        <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
+                        <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
+                        <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
+                        <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
+                        <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
+                    </ul>
 
-            <ul class="nav-menu hidden md:flex space-x-10 items-center">
-                <li><a href="index.html" class="nav-link text-geology-dark uppercase">Inicio</a></li>
-                <li><a href="Proyecto.html" class="nav-link text-geology-dark uppercase">Proyecto</a></li>
-                <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark uppercase">Galeria</a></li>
-                <li><a href="Modelos3D.html" class="nav-link text-geology-dark uppercase">Modelos 3D</a></li>
-                <li><a href="libros.html" class="nav-link text-geology-dark uppercase">Manuales</a></li>
-            </ul>
-
-            <div class="w-24 md:w-32">
-                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" alt="UNAM">
-            </div>
-        </nav>
+                    <div class="w-20 md:w-28 lg:w-32">
+                        <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
+                            <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" 
+                                alt="Logo UNAM" class="rounded-lg hover:scale-105 transition duration-300">
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <section class="relative h-[35vh] flex items-center justify-center overflow-hidden border-b border-unam-gold/20">

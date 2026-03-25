@@ -54,7 +54,7 @@
         }
         
         #menu-toggle:checked ~ .nav-menu {
-            display: block;
+            display: flex;
         }
         
         .nav-link {
@@ -66,12 +66,6 @@
         }
         .nav-link:hover {
             color: #8a1538 !important;
-        }
-        
-        @media (min-width: 768px) {
-            .nav-menu {
-                display: flex !important;
-            }
         }
         
         /* --- MAPA INTERACTIVO (CONTRASTE CLARO) --- */
@@ -133,38 +127,37 @@
     <div class="container mx-auto">
         <header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-sm border-b-4 border-unam-gold">
             <div class="py-4 px-6 md:px-10">
-                <!-- Title Section -->
-                <div class="text-center mb-4">
-                    <h1 class="font-serif text-lg md:text-2xl lg:text-3xl font-extrabold text-unam-red leading-tight uppercase">
-                        GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO
-                    </h1>
-                    <p class="text-sm md:text-base text-geology-dark font-medium italic mt-1">
-                        PAPIME PE108024
-                    </p>
-                </div>
-                
                 <!-- Navigation Bar -->
                 <nav class="relative">
                     <div class="flex items-center justify-between">
-                        <div class="w-16 md:w-20">
+                        <div class="w-20 md:w-28 lg:w-32">
                             <a href="https://www.ingenieria.unam.mx" target="_blank" rel="noopener noreferrer">
                                 <img src="Imagenes/escudo_fi.png" alt="Logo Facultad de Ingeniería UNAM" 
                                     class="rounded-lg hover:scale-105 transition duration-300">
                             </a>
                         </div>
                         
-                        <input type="checkbox" id="menu-toggle" class="hidden">
-                        <label for="menu-toggle" class="hamburger text-3xl text-geology-dark">&#9776;</label>
+                        <div class="text-center flex-1">
+                            <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
+                                GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO
+                            </h1>
+                            <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                                PAPIME PE108024
+                            </p>
+                        </div>
                         
-                        <ul class="nav-menu absolute md:static top-full right-0 w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none hidden md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 p-4 md:p-0 rounded-lg md:rounded-none mt-2 md:mt-0">
+                        <input type="checkbox" id="menu-toggle" class="hidden">
+                        <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer">&#9776;</label>
+                        
+                        <ul class="nav-menu absolute top-full right-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
                             <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
                             <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
                             <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
-                            <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200" target="_blank" rel="noopener noreferrer">Modelos 3D</a></li>
+                            <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
                             <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
                         </ul>
 
-                        <div class="w-16 md:w-20">
+                        <div class="w-20 md:w-28 lg:w-32">
                             <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
                                 <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" 
                                     alt="Logo UNAM" class="rounded-lg hover:scale-105 transition duration-300">
