@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Interactivo - Localidades Mineralógicas</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="icon" href="Imagenes/escudo.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'unam-red': '#cc0033',
+                        'unam-gold': '#b08d57', 
+                        'unam-red': '#8a1538',  
+                        'geology-beige': '#f5f2eb', 
+                        'geology-dark': '#2c2c2c',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     },
                 }
             }
@@ -21,10 +29,29 @@
         /* --- ESTILOS BASE Y CONTENEDOR --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #f5f2eb;
+            color: #2c2c2c;
             min-height: 100vh;
-            padding: 2rem;
+        }
+        
+        #menu-toggle:checked ~ .nav-menu {
+            display: flex;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .nav-link:hover {
+            color: #8a1538 !important;
         }
 
         /* --- ESTILOS DEL MAPA Y TOOLTIP --- */
@@ -34,8 +61,8 @@
             margin: 0 auto;
             border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            background-color: transparent;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
         }
 
         /* Estilo para los Puntos Dinámicos */
@@ -44,8 +71,8 @@
             width: 30px; 
             height: 30px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid #cc0033;
+            background-color: rgba(138, 21, 56, 0.1);
+            border: 2px solid #8a1538;
             cursor: pointer;
             transform: translate(-50%, -50%);
             transition: transform 0.1s;
@@ -56,22 +83,21 @@
         }
 
         .map-point span {
-            color: #cc0033;
+            color: #8a1538;
             font-weight: bold;
             font-size: 14px;
             pointer-events: none;
-            text-shadow: 0 0 3px rgba(0,0,0,0.5);
         }
         
         /* Estilo para la caja de información flotante (tooltip) */
         #info-box-map {
             position: absolute; 
-            background-color: rgba(30, 41, 59, 0.95);
-            color: #f8fafc;
+            background-color: rgba(255, 255, 255, 0.98);
+            color: #2c2c2c;
             padding: 1rem;
             border-radius: 0.5rem;
-            box-shadow: 0 5px 15px rgba(204, 0, 51, 0.6);
-            border: 2px solid #cc0033;
+            box-shadow: 0 5px 15px rgba(138, 21, 56, 0.3);
+            border: 2px solid #b08d57;
             z-index: 1000;
             max-width: 250px;
             pointer-events: none;
@@ -92,12 +118,54 @@
     </style>
 </head>
 <body>
+    <div class="container mx-auto">
+        <header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-sm border-b-4 border-unam-gold">
+            <div class="py-4 px-6 md:px-10">
+                <nav class="relative">
+                    <div class="flex items-center justify-between">
+                        <div class="w-20 md:w-28 lg:w-32">
+                            <a href="https://www.ingenieria.unam.mx" target="_blank" rel="noopener noreferrer">
+                                <img src="Imagenes/escudo_fi.png" alt="Logo Facultad de Ingeniería UNAM" 
+                                    class="rounded-lg hover:scale-105 transition duration-300">
+                            </a>
+                        </div>
+                        
+                        <div class="text-center flex-1">
+                            <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
+                                GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO
+                            </h1>
+                            <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                                PAPIME PE108024
+                            </p>
+                        </div>
+                        
+                        <input type="checkbox" id="menu-toggle" class="hidden">
+                        <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer">&#9776;</label>
+                        
+                        <ul class="nav-menu absolute top-full right-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
+                            <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
+                            <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
+                            <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
+                            <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
+                            <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
+                        </ul>
+
+                        <div class="w-20 md:w-28 lg:w-32">
+                            <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
+                                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" 
+                                    alt="Logo UNAM" class="rounded-lg hover:scale-105 transition duration-300">
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
 
     <section id="mapa-interactivo-principal" class="max-w-6xl mx-auto px-6 py-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center border-b-2 border-red-700 pb-2">
+        <h1 class="text-3xl md:text-4xl font-bold text-unam-red mb-8 text-center border-b-2 border-unam-gold pb-2">
             Mapa Interactivo de Localidades Mineralógicas
         </h1>
-        <p class="text-gray-400 text-lg text-center mb-10">
+        <p class="text-geology-dark/70 text-lg text-center mb-10">
             Pasa el cursor sobre los números en el mapa para ver los detalles de cada localidad minera.
         </p>
 
@@ -106,9 +174,9 @@
                 alt="Mapa de México con puntos de interés mineralógico">
             
             <div id="info-box-map">
-                <h4 id="info-nombre-map" class="text-red-700 font-extrabold text-lg mb-1">Localidad</h4>
-                <p id="info-minerales-map" class="text-gray-300 text-sm italic">Minerales:</p>
-                <a id="info-link-map" href="#" target="_blank" class="text-blue-500 hover:text-red-700 font-semibold text-sm mt-2 block">
+                <h4 id="info-nombre-map" class="text-unam-red font-extrabold text-lg mb-1">Localidad</h4>
+                <p id="info-minerales-map" class="text-geology-dark text-sm italic">Minerales:</p>
+                <a id="info-link-map" href="#" target="_blank" class="text-unam-gold hover:text-unam-red font-semibold text-sm mt-2 block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download inline-block mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
                     Descargar Folleto
                 </a>
@@ -116,11 +184,27 @@
         </div>
 
         <div class="text-center mt-8">
-            <a href="index.html" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+            <a href="index.html" class="bg-unam-red hover:bg-unam-gold text-white font-bold py-3 px-6 rounded-full transition duration-300">
                 Regresar a Inicio
             </a>
         </div>
     </section>
+
+    <footer class="bg-white mt-12 py-10 px-6 text-center rounded-t-xl shadow-inner border-t-4 border-unam-red">
+        <p class="text-geology-dark font-bold text-base mb-3">© 2026 UNAM - Facultad de Ingeniería. Todos los derechos reservados.</p>
+        <div class="social-media flex justify-center space-x-6">
+            <a href="https://www.facebook.com/UNAM.MX.Oficial/" target="_blank" class="hover:scale-110 transition-transform">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="w-7 h-7">
+            </a>
+            <a href="https://twitter.com/UNAM_MX" target="_blank" class="hover:scale-110 transition-transform">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="w-7 h-7">
+            </a>
+            <a href="https://www.instagram.com/unam_mx/" target="_blank" class="hover:scale-110 transition-transform">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" class="w-7 h-7">
+            </a>
+        </div>
+    </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
