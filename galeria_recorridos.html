@@ -142,20 +142,53 @@
                 </div>
             </section>
 
-            <section class="max-w-4xl mx-auto px-6 py-16">
-                <div class="bg-white rounded-3xl p-12 border-2 border-unam-gold/30 shadow-xl text-center">
-                    <svg class="w-24 h-24 mx-auto mb-6 text-unam-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    <h2 class="font-serif text-3xl font-bold text-unam-red mb-6">Ver Galería de Imágenes</h2>
-                    <p class="text-geology-dark text-lg mb-8 font-medium">
-                        Explora nuestra colección completa de fotografías de excursiones mineralógicas en diferentes localidades de México.
-                    </p>
-                    <a href="https://javierinfanteb.github.io/localidades.html" 
-                       target="_blank"
-                       class="inline-block bg-unam-red hover:bg-unam-gold text-white font-bold py-4 px-12 rounded-full shadow-lg transition duration-300 transform hover:scale-105 uppercase tracking-widest text-lg">
-                        Abrir Galería
-                    </a>
+            <section class="max-w-7xl mx-auto px-6 py-12">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Sidebar -->
+                    <aside class="w-full md:w-72 flex-shrink-0">
+                        <div class="mb-6">
+                            <p class="text-unam-gold font-semibold text-sm mb-2">San Luis Potosí</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('joya-honda')" id="btn-joya-honda" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">JOYA HONDA</button>
+                                <button onclick="selectLocation('tepetate')" id="btn-tepetate" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TEPETATE</button>
+                                <button onclick="selectLocation('coyotes')" id="btn-coyotes" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">COYOTES</button>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <p class="text-unam-gold font-semibold text-sm mb-2">Oaxaca</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('oaxaca')" id="btn-oaxaca" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">OAXACA</button>
+                                <button onclick="selectLocation('telixtlahuaca')" id="btn-telixtlahuaca" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TELIXTLAHUACA</button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-unam-gold font-semibold text-sm mb-2">Veracruz</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('tatalia')" id="btn-tatalia" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TATALIA</button>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Photo panel -->
+                    <div class="flex-1">
+                        <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8">
+                            <h2 id="gallery-title" class="font-serif text-3xl font-bold italic text-unam-red mb-2"></h2>
+                            <div class="w-24 h-0.5 bg-unam-gold mb-6"></div>
+                            <div class="relative flex items-center justify-center" style="min-height:340px; background:#f1f5f9; border-radius:0.75rem;">
+                                <button onclick="prevPhoto()" class="absolute left-3 z-10 w-12 h-12 bg-white rounded-full border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                                <img id="gallery-img" src="" alt="" class="max-w-full max-h-80 object-contain rounded-lg px-16">
+                                <button onclick="nextPhoto()" class="absolute right-3 z-10 w-12 h-12 bg-white rounded-full border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p id="gallery-counter" class="text-center text-unam-red font-bold text-lg mt-4"></p>
+                    </div>
                 </div>
             </section>
         </main>
@@ -171,15 +204,53 @@
     </div>
 
     <script>
+        const locations = {
+            'joya-honda':    { name: 'JOYA HONDA',    folder: 'Joya Honda San Luis Potosi', count: 5 },
+            'tepetate':      { name: 'TEPETATE',      folder: 'Tepetate San Luis Potosi',   count: 11 },
+            'coyotes':       { name: 'COYOTES',       folder: 'Coyotes San Luis Potosi',    count: 4 },
+            'oaxaca':        { name: 'OAXACA',        folder: 'Oaxaca',                     count: 38 },
+            'telixtlahuaca': { name: 'TELIXTLAHUACA', folder: 'Telixtlahuaca Oaxaca',       count: 11 },
+            'tatalia':       { name: 'TATALIA',       folder: 'Tatalia Veracruz',           count: 14 }
+        };
+
+        let currentLocation = 'joya-honda';
+        let currentIndex = 1;
+
+        function selectLocation(key) {
+            currentLocation = key;
+            currentIndex = 1;
+            document.querySelectorAll('.loc-btn').forEach(btn => {
+                btn.style.background = 'white';
+                btn.style.color = '#2c2c2c';
+            });
+            const active = document.getElementById('btn-' + key);
+            active.style.background = '#8a1538';
+            active.style.color = 'white';
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const loc = locations[currentLocation];
+            document.getElementById('gallery-title').textContent = loc.name;
+            document.getElementById('gallery-img').src = 'Imagenes/' + loc.folder + '/' + currentIndex + '.jpg';
+            document.getElementById('gallery-img').alt = loc.name + ' - Foto ' + currentIndex;
+            document.getElementById('gallery-counter').textContent = currentIndex + ' / ' + loc.count;
+        }
+
+        function prevPhoto() {
+            const loc = locations[currentLocation];
+            currentIndex = currentIndex > 1 ? currentIndex - 1 : loc.count;
+            updateGallery();
+        }
+
+        function nextPhoto() {
+            const loc = locations[currentLocation];
+            currentIndex = currentIndex < loc.count ? currentIndex + 1 : 1;
+            updateGallery();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+            selectLocation('joya-honda');
         });
     </script>
 </body>
