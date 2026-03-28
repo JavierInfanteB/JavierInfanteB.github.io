@@ -28,103 +28,87 @@
     <style>
         body { background-color: #f5f2eb; color: #2c2c2c; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         
-        .text-outline-bg {
-            position: absolute;
-            font-size: 8rem;
-            font-weight: 900;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(138, 21, 56, 0.08);
-            white-space: nowrap;
-            z-index: 0;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            pointer-events: none;
-            text-transform: uppercase;
-        }
-
-        /* Estilo Menú más grande */
-        .nav-link { font-size: 1.25rem; font-weight: 700; transition: color 0.3s; }
-        .nav-link:hover { color: #8a1538; }
-
-        .carousel-viewport { display: none; opacity: 0; transition: opacity 0.8s ease; }
-        .carousel-viewport.active { display: block; opacity: 1; }
-
-        .image-track { display: flex; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        /* Botones de localidades */
-        .sub-loc-btn {
-            transition: all 0.3s ease;
-            text-align: left;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            border: 1px solid #d1cec7;
-            background: white;
-            color: #4a5568;
-            margin-bottom: 0.5rem;
-        }
-        .sub-loc-btn:hover { background: #fef2f2; transform: translateX(5px); border-color: #8a1538; }
-        .sub-loc-btn.active { 
-            background: #8a1538; 
-            color: white; 
-            box-shadow: 0 4px 15px rgba(138, 21, 56, 0.3);
-            border-color: transparent;
-        }
-
-        .state-label {
-            font-family: 'Playfair Display', serif;
-            color: #b08d57;
-            font-size: 1.2rem;
-            border-bottom: 2px solid #b08d57;
-            margin-bottom: 1rem;
-            margin-top: 1.5rem;
-            padding-bottom: 0.25rem;
-        }
-
-        .excursion-card {
-            background: white;
-            border: 1px solid #d1cec7;
-            padding: 1rem;
-            border-radius: 0.75rem;
+        #menu-toggle:checked ~ .nav-menu {
             display: flex;
-            align-items: center;
-            gap: 1rem;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .nav-link:hover {
+            color: #8a1538 !important;
+        }
+
+        .excursion-card-large {
+            background: white;
+            border: 2px solid #e5e2db;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            display: block;
             transition: all 0.3s ease;
             cursor: pointer;
             width: 100%;
         }
-        .excursion-card:hover {
-            background: #fef2f2;
-            border-color: #8a1538;
-            transform: translateY(-2px);
+        .excursion-card-large:hover {
+            background: #fef9f5;
+            border-color: #b08d57;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(176, 141, 87, 0.15);
         }
-
-        .nav-arrow { backdrop-filter: blur(4px); transition: all 0.3s ease; }
     </style>
 </head>
 <body>
 
-    <header class="sticky top-0 z-50 w-full bg-white/90 shadow-md backdrop-blur-sm border-b border-unam-gold/30">
-        <nav class="container mx-auto py-6 px-10 flex items-center justify-between">
-            <div class="w-24 md:w-32">
-                <img src="Imagenes/escudo_fi.png" alt="Logo FI">
-            </div>
+    <header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-sm border-b-4 border-unam-gold">
+        <div class="py-4 px-6 md:px-10">
+            <nav class="relative">
+                <div class="flex items-center justify-between">
+                    <div class="w-20 md:w-28 lg:w-32">
+                        <a href="https://www.ingenieria.unam.mx" target="_blank" rel="noopener noreferrer">
+                            <img src="Imagenes/escudo_fi.png" alt="Logo Facultad de Ingeniería UNAM" 
+                                class="rounded-lg hover:scale-105 transition duration-300">
+                        </a>
+                    </div>
+                    
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer ml-2">&#9776;</label>
+                    
+                    <ul class="nav-menu absolute top-full left-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
+                        <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
+                        <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
+                        <li><a href="localidades.html" class="nav-link text-geology-dark transition duration-200">Localidades</a></li>
+                        <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
+                        <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
+                        <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
+                    </ul>
+                    
+                    <div class="text-center flex-1">
+                        <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
+                            GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO Y LIBRO SOBRE EL ACERVO HISTORICO DE LAS COLECCIONES Y EL EQUIPO ANTIGUO DEL LABORATORIO DE MINERALOGIA DE LA FACULTAD DE INGENIERIA
+                        </h1>
+                        <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                            PAPIME PE108024
+                        </p>
+                    </div>
 
-            <ul class="nav-menu hidden md:flex space-x-10 items-center">
-                <li><a href="index.html" class="nav-link text-geology-dark uppercase">Inicio</a></li>
-                <li><a href="Proyecto.html" class="nav-link text-geology-dark uppercase">Proyecto</a></li>
-                <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark uppercase">Galeria</a></li>
-                <li><a href="Modelos3D.html" class="nav-link text-geology-dark uppercase">Modelos 3D</a></li>
-                <li><a href="libros.html" class="nav-link text-geology-dark uppercase">Manuales</a></li>
-            </ul>
-
-            <div class="w-24 md:w-32">
-                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" alt="UNAM">
-            </div>
-        </nav>
+                    <div class="w-20 md:w-28 lg:w-32">
+                        <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
+                            <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" 
+                                alt="Logo UNAM" class="rounded-lg hover:scale-105 transition duration-300">
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <section class="relative h-[35vh] flex items-center justify-center overflow-hidden border-b border-unam-gold/20">
@@ -135,76 +119,114 @@
     </section>
 
     <main class="container mx-auto px-6 py-12">
-        <div class="grid lg:grid-cols-12 gap-10 items-start">
-            <aside class="lg:col-span-3">
-                <div class="state-label">San Luis Potosí</div>
-                <button onclick="changeState('joya')" class="sub-loc-btn" id="btn-joya">Joya Honda</button>
-                <button onclick="changeState('tepetate')" class="sub-loc-btn" id="btn-tepetate">Tepetate</button>
-                <button onclick="changeState('coyotes')" class="sub-loc-btn" id="btn-coyotes">Coyotes</button>
-
-                <div class="state-label">Oaxaca</div>
-                <button onclick="changeState('oaxaca')" class="sub-loc-btn" id="btn-oaxaca">Oaxaca</button>
-                <button onclick="changeState('telixtlahuaca')" class="sub-loc-btn" id="btn-telixtlahuaca">Telixtlahuaca</button>
-
-                <div class="state-label">Veracruz</div>
-                <button onclick="changeState('tatalia')" class="sub-loc-btn" id="btn-tatalia">Tatalia</button>
-            </aside>
-
-            <section class="lg:col-span-9 bg-white rounded-3xl p-8 border border-unam-gold/20 relative min-h-[620px] flex flex-col items-center shadow-xl">
-                <div id="placeholder" class="text-center opacity-40 mt-40">
-                    <svg class="w-20 h-20 mx-auto mb-4 text-unam-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <p class="font-serif text-2xl italic text-geology-dark">Selecciona una localidad para explorar</p>
+        <!-- Sección principal: Documentación de Excursiones -->
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-4xl md:text-5xl text-unam-red font-bold uppercase mb-4">
+                    Documentación de Excursiones
+                </h2>
+                <div class="w-32 h-1 bg-unam-gold mx-auto mb-6"></div>
+                <p class="text-geology-dark/70 text-xl max-w-2xl mx-auto">
+                    Consulta las guías técnicas de cada excursión mineralógica en formato interactivo
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-3xl border-2 border-unam-gold/30 p-8 md:p-12 shadow-2xl">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <button onclick="irAExcursion('TEPETATE')" class="excursion-card-large group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-unam-gold/10 rounded-2xl flex items-center justify-center group-hover:bg-unam-red/10 transition-colors">
+                                <svg class="w-7 h-7 text-unam-gold group-hover:text-unam-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="font-bold text-geology-dark uppercase tracking-wide text-lg group-hover:text-unam-red transition-colors">Guía Tepetate</span>
+                                <p class="text-sm text-geology-dark/50 mt-1">San Luis Potosí</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="irAExcursion('CHARCAS')" class="excursion-card-large group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-unam-gold/10 rounded-2xl flex items-center justify-center group-hover:bg-unam-red/10 transition-colors">
+                                <svg class="w-7 h-7 text-unam-gold group-hover:text-unam-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="font-bold text-geology-dark uppercase tracking-wide text-lg group-hover:text-unam-red transition-colors">Guía Charcas</span>
+                                <p class="text-sm text-geology-dark/50 mt-1">San Luis Potosí</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="irAExcursion('XALOSTOC')" class="excursion-card-large group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-unam-gold/10 rounded-2xl flex items-center justify-center group-hover:bg-unam-red/10 transition-colors">
+                                <svg class="w-7 h-7 text-unam-gold group-hover:text-unam-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="font-bold text-geology-dark uppercase tracking-wide text-lg group-hover:text-unam-red transition-colors">Guía Xalostoc</span>
+                                <p class="text-sm text-geology-dark/50 mt-1">Morelos</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="irAExcursion('BOLEO')" class="excursion-card-large group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-unam-gold/10 rounded-2xl flex items-center justify-center group-hover:bg-unam-red/10 transition-colors">
+                                <svg class="w-7 h-7 text-unam-gold group-hover:text-unam-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="font-bold text-geology-dark uppercase tracking-wide text-lg group-hover:text-unam-red transition-colors">Guía Boleo</span>
+                                <p class="text-sm text-geology-dark/50 mt-1">Baja California Sur</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="irAExcursion('CERRO DEL MERCADO')" class="excursion-card-large group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-unam-gold/10 rounded-2xl flex items-center justify-center group-hover:bg-unam-red/10 transition-colors">
+                                <svg class="w-7 h-7 text-unam-gold group-hover:text-unam-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="font-bold text-geology-dark uppercase tracking-wide text-lg group-hover:text-unam-red transition-colors">Guía Cerro del Mercado</span>
+                                <p class="text-sm text-geology-dark/50 mt-1">Durango</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="irAExcursion('TELIXTLAHUACA')" class="excursion-card-large group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-unam-gold/10 rounded-2xl flex items-center justify-center group-hover:bg-unam-red/10 transition-colors">
+                                <svg class="w-7 h-7 text-unam-gold group-hover:text-unam-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="font-bold text-geology-dark uppercase tracking-wide text-lg group-hover:text-unam-red transition-colors">Guía Telixtlahuaca</span>
+                                <p class="text-sm text-geology-dark/50 mt-1">Oaxaca</p>
+                            </div>
+                        </div>
+                    </button>
                 </div>
-
-                <div id="carousel-container" class="carousel-viewport w-full h-full relative group">
-                    <h2 id="state-title" class="font-serif text-3xl font-bold text-unam-red border-b-2 border-unam-gold pb-2 mb-8 inline-block uppercase italic"></h2>
-                    <div class="relative w-full max-h-[500px] aspect-video rounded-2xl overflow-hidden shadow-lg bg-gray-100 border border-unam-gold/10">
-                        <div id="image-track" class="image-track h-full items-center"></div>
-                        <button onclick="manualPrev()" class="nav-arrow absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-unam-red hover:text-white p-5 rounded-full z-10 shadow-md">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="4" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                        <button onclick="manualNext()" class="nav-arrow absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-unam-red hover:text-white p-5 rounded-full z-10 shadow-md">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="4" d="M9 5l7 7-7 7"/></svg>
-                        </button>
+                
+                <div class="mt-10 text-center">
+                    <div class="inline-flex items-center gap-3 bg-geology-beige/50 px-6 py-4 rounded-2xl">
+                        <svg class="w-6 h-6 text-unam-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p class="text-geology-dark/70 text-lg italic">
+                            Haz clic en una guía para visualizar el informe técnico de la excursión en formato interactivo.
+                        </p>
                     </div>
-                    <div class="mt-6 flex items-center justify-center space-x-4">
-                        <span id="counter" class="text-unam-red font-bold text-xl font-serif">1 / 1</span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="mt-24 max-w-5xl mx-auto">
-            <h2 class="font-serif text-2xl text-unam-red font-bold uppercase mb-6 pl-4 border-l-8 border-unam-gold">Documentación de Excursiones</h2>
-            <div class="bg-white rounded-3xl border border-unam-gold/20 p-10 grid md:grid-cols-12 gap-8 items-center shadow-lg">
-                <div class="md:col-span-5 space-y-4">
-                    <button onclick="irAExcursion('TEPETATE')" class="excursion-card group">
-                        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" class="w-6 h-6 grayscale group-hover:grayscale-0" alt="folder">
-                        <span class="font-bold text-geology-dark uppercase tracking-widest text-sm">GUÍA TEPETATE</span>
-                    </button>
-                    <button onclick="irAExcursion('CHARCAS')" class="excursion-card group">
-                        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" class="w-6 h-6 grayscale group-hover:grayscale-0" alt="folder">
-                        <span class="font-bold text-geology-dark uppercase tracking-widest text-sm">GUÍA CHARCAS</span>
-                    </button>
-                    <button onclick="irAExcursion('XALOSTOC')" class="excursion-card group">
-                        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" class="w-6 h-6 grayscale group-hover:grayscale-0" alt="folder">
-                        <span class="font-bold text-geology-dark uppercase tracking-widest text-sm">GUÍA XALOSTOC</span>
-                    </button>
-                    <button onclick="irAExcursion('BOLEO')" class="excursion-card group">
-                        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" class="w-6 h-6 grayscale group-hover:grayscale-0" alt="folder">
-                        <span class="font-bold text-geology-dark uppercase tracking-widest text-sm">GUÍA BOLEO</span>
-                    </button>
-                    <button onclick="irAExcursion('CERRO DEL MERCADO')" class="excursion-card group">
-                        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" class="w-6 h-6 grayscale group-hover:grayscale-0" alt="folder">
-                        <span class="font-bold text-geology-dark uppercase tracking-widest text-sm">GUÍA CERRRO DEL MERCADO</span>
-                    </button>
-                    <button onclick="irAExcursion('TELIXTLAHUACA')" class="excursion-card group">
-                        <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" class="w-6 h-6 grayscale group-hover:grayscale-0" alt="folder">
-                        <span class="font-bold text-geology-dark uppercase tracking-widest text-sm">GUÍA TELIXTLAHUACA</span>
-                    </button>
-                </div>
-                <div class="md:col-span-7 text-center">
-                    <p class="text-geology-dark/60 text-lg italic">Haz clic en una guía para visualizar el informe técnico de la excursión en formato interactivo.</p>
                 </div>
             </div>
         </div>
@@ -220,58 +242,6 @@
     </footer>
 
     <script>
-        const configStates = {
-            'joya': { title: 'Joya Honda', folder: 'Joya Honda San Luis Potosi', total: 5 },
-            'tepetate': { title: 'Tepetate', folder: 'Tepetate San Luis Potosi', total: 11 },
-            'coyotes': { title: 'Coyotes', folder: 'Coyotes San Luis Potosi', total: 4 },
-            'oaxaca': { title: 'Oaxaca', folder: 'Oaxaca', total: 38 },
-            'telixtlahuaca': { title: 'Telixtlahuaca', folder: 'Telixtlahuaca Oaxaca', total: 11 },
-            'tatalia': { title: 'Tatalia', folder: 'Tatalia Veracruz', total: 14 } 
-        };
-
-        let currentIdx = 0;
-        let totalImgs = 0;
-        let autoPlayInterval;
-
-        function changeState(stateId) {
-            clearInterval(autoPlayInterval);
-            const data = configStates[stateId];
-            document.getElementById('placeholder').style.display = 'none';
-            document.getElementById('carousel-container').classList.add('active');
-            document.getElementById('state-title').innerText = data.title;
-            
-            document.querySelectorAll('.sub-loc-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + stateId).classList.add('active');
-            
-            const track = document.getElementById('image-track');
-            track.innerHTML = '';
-            currentIdx = 0;
-            totalImgs = data.total;
-            
-            for (let i = 1; i <= data.total; i++) {
-                const img = document.createElement('img');
-                img.src = `Imagenes/${data.folder}/${i}.jpg`;
-                img.className = 'w-full h-full object-contain flex-shrink-0';
-                img.onerror = function() { this.src = 'https://via.placeholder.com/800?text=Imagen+No+Encontrada'; };
-                track.appendChild(img);
-            }
-            updateCarousel();
-            startAutoPlay();
-        }
-
-        function startAutoPlay() { autoPlayInterval = setInterval(nextSlide, 3500); }
-        function manualNext() { clearInterval(autoPlayInterval); nextSlide(); startAutoPlay(); }
-        function manualPrev() { clearInterval(autoPlayInterval); prevSlide(); startAutoPlay(); }
-        function nextSlide() { currentIdx = (currentIdx + 1) % totalImgs; updateCarousel(); }
-        function prevSlide() { currentIdx = (currentIdx - 1 + totalImgs) % totalImgs; updateCarousel(); }
-        
-        function updateCarousel() {
-            const track = document.getElementById('image-track');
-            if(track) track.style.transform = `translateX(-${currentIdx * 100}%)`;
-            const counter = document.getElementById('counter');
-            if(counter) counter.innerText = `${currentIdx + 1} / ${totalImgs}`;
-        }
-
         function irAExcursion(nombre) {
             window.location.href = `excursion_visor.html?localidad=${nombre}`;
         }

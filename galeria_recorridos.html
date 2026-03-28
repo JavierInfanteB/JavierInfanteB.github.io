@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recorridos VR - Ingeniería Geológica UNAM</title>
+    <title>Galería - Ingeniería Geológica UNAM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="Imagenes/escudo.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -28,8 +28,28 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f2eb; /* Fondo Beige */
+            background-color: #f5f2eb;
             color: #2c2c2c;
+        }
+        
+        #menu-toggle:checked ~ .nav-menu {
+            display: flex;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+        }
+        .nav-link:hover {
+            color: #8a1538 !important;
         }
         
         .text-outline-bg {
@@ -37,7 +57,7 @@
             font-size: 8rem;
             font-weight: 900;
             color: transparent;
-            -webkit-text-stroke: 2px rgba(138, 21, 56, 0.08); /* Outline en color Vino sutil */
+            -webkit-text-stroke: 2px rgba(138, 21, 56, 0.08);
             white-space: nowrap;
             z-index: 0;
             pointer-events: none;
@@ -64,120 +84,111 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .tour-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 */
-            background: #e2e8f0;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid #b08d57; /* Borde Dorado */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .tour-container iframe, .tour-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .play-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(138, 21, 56, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-        .play-overlay:hover {
-            background: rgba(138, 21, 56, 0.1);
-        }
-
-        .nav-link {
-            font-size: 1.25rem; /* Menú más grande */
-            font-weight: 600;
-        }
     </style>
 </head>
 <body class="min-h-screen">
     <div class="container mx-auto">
-        <header class="sticky top-0 z-40 w-full bg-white/90 shadow-md backdrop-blur-sm border-b border-unam-gold/30">
-            <nav class="py-6 px-10">
-                <div class="flex items-center justify-between">
-                    <div class="w-20 md:w-28 lg:w-32">
-                        <img src="Imagenes/escudo_fi.png" alt="Logo FI" class="rounded-lg hover:scale-105 transition duration-300">
-                    </div>
+        <header class="sticky top-0 z-40 w-full bg-white/95 shadow-md backdrop-blur-sm border-b-4 border-unam-gold">
+            <div class="py-4 px-6 md:px-10">
+                <nav class="relative">
+                    <div class="flex items-center justify-between">
+                        <div class="w-20 md:w-28 lg:w-32">
+                            <a href="https://www.ingenieria.unam.mx" target="_blank" rel="noopener noreferrer">
+                                <img src="Imagenes/escudo_fi.png" alt="Logo Facultad de Ingeniería UNAM" 
+                                    class="rounded-lg hover:scale-105 transition duration-300">
+                            </a>
+                        </div>
+                        
+                        <input type="checkbox" id="menu-toggle" class="hidden">
+                        <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer ml-2">&#9776;</label>
+                        
+                        <ul class="nav-menu absolute top-full left-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
+                            <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
+                            <li><a href="Proyecto.html" class="nav-link text-geology-dark transition duration-200">Proyecto</a></li>
+                            <li><a href="localidades.html" class="nav-link text-geology-dark transition duration-200">Localidades</a></li>
+                            <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark transition duration-200">Galería</a></li>
+                            <li><a href="Modelos3D.html" class="nav-link text-geology-dark transition duration-200">Modelos 3D</a></li>
+                            <li><a href="libros.html" class="nav-link text-geology-dark transition duration-200">Manuales</a></li>
+                        </ul>
+                        
+                        <div class="text-center flex-1">
+                            <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
+                                GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO Y LIBRO SOBRE EL ACERVO HISTORICO DE LAS COLECCIONES Y EL EQUIPO ANTIGUO DEL LABORATORIO DE MINERALOGIA DE LA FACULTAD DE INGENIERIA
+                            </h1>
+                            <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                                PAPIME PE108024
+                            </p>
+                        </div>
 
-                    <ul class="nav-menu absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none hidden md:flex space-y-4 md:space-y-0 md:space-x-8 p-6 md:p-0 items-center justify-center text-center">
-                        <li><a href="index.html" class="nav-link text-geology-dark hover:text-unam-red transition duration-200">Inicio</a></li>
-                        <li><a href="Proyecto.html" class="nav-link text-geology-dark hover:text-unam-red transition duration-200">Proyecto</a></li>
-                        <li><a href="galeria_recorridos.html" class="nav-link text-geology-dark hover:text-unam-red transition duration-200">Galeria</a></li>
-                        <li><a href="Modelos3D.html" class="nav-link text-geology-dark hover:text-unam-red transition duration-200" target="_blank" rel="noopener noreferrer">Modelos 3D</a></li>
-                        <li><a href="libros.html" class="nav-link text-geology-dark hover:text-unam-red transition duration-200">Manuales</a></li>
-                    </ul>
-
-                    <div class="w-20 md:w-28 lg:w-32">
-                        <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" alt="UNAM" class="rounded-lg hover:scale-105 transition duration-300">
+                        <div class="w-20 md:w-28 lg:w-32">
+                            <a href="https://www.unam.mx" target="_blank" rel="noopener noreferrer">
+                                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/01/UNAM_Universidad_Nacional_Autonoma_de_Mexico_Logo.png" 
+                                    alt="Logo UNAM" class="rounded-lg hover:scale-105 transition duration-300">
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </header>
 
         <main class="w-full">
-            <section class="hero-container min-h-[45vh] flex flex-col items-center justify-center text-center px-4 py-20">
-                <span class="text-outline-bg">Recorridos VR</span>
+            <section class="hero-container min-h-[30vh] flex flex-col items-center justify-center text-center px-4 py-12">
+                <span class="text-outline-bg">Galería</span>
                 <div class="relative z-10">
-                    <h1 class="font-serif text-5xl md:text-7xl font-bold text-unam-red mb-2 tracking-tight">Recorridos VR</h1>
-                    <p class="text-xl md:text-2xl text-geology-dark/70 font-light italic max-w-2xl mx-auto">
-                        Explora los laboratorios y edificios de nuestra facultad desde cualquier lugar.
+                    <h1 class="font-serif text-4xl md:text-6xl font-bold text-unam-red mb-2 tracking-tight">Galería de Localidades</h1>
+                    <p class="text-lg md:text-xl text-geology-dark/70 font-light italic max-w-2xl mx-auto">
+                        Fotografías de campo en cada lugar de las excursiones mineralógicas.
                     </p>
                 </div>
             </section>
 
-            <section class="max-w-5xl mx-auto px-6 py-12 space-y-16">
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-8 border-unam-red scroll-reveal">
-                    <div class="mb-6 text-center md:text-left">
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-unam-red uppercase">Edificio J: Geología Física</h2>
-                        <p class="text-geology-dark/60 mt-2 italic text-sm font-semibold uppercase tracking-widest">Haz clic en la imagen para iniciar el recorrido</p>
-                    </div>
-                    <div class="tour-container" id="tour-1">
-                        <img src="Imagenes/Recorrido3.png" alt="Miniatura Edificio J">
-                        <div class="play-overlay">
-                            <div class="w-16 h-16 bg-unam-red rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition">
-                                <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <section class="max-w-7xl mx-auto px-6 py-12">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Sidebar -->
+                    <aside class="w-full md:w-72 flex-shrink-0">
+                        <div class="mb-6">
+                            <p class="text-unam-gold font-semibold text-sm mb-2">San Luis Potosí</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('joya-honda')" id="btn-joya-honda" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">JOYA HONDA</button>
+                                <button onclick="selectLocation('tepetate')" id="btn-tepetate" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TEPETATE</button>
+                                <button onclick="selectLocation('coyotes')" id="btn-coyotes" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">COYOTES</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-lg border-l-8 border-unam-gold scroll-reveal">
-                    <div class="mb-6 text-center md:text-left">
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-unam-red uppercase">Edificio C: Laboratorios</h2>
-                        <p class="text-geology-dark/60 mt-2 italic text-sm font-semibold uppercase tracking-widest">Haz clic en la imagen para iniciar el recorrido</p>
-                    </div>
-                    <div class="tour-container" id="tour-2">
-                        <img src="Imagenes/Recorrido4.png" alt="Miniatura Edificio C">
-                        <div class="play-overlay">
-                            <div class="w-16 h-16 bg-unam-gold rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition">
-                                <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <div class="mb-6">
+                            <p class="text-unam-gold font-semibold text-sm mb-2">Oaxaca</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('oaxaca')" id="btn-oaxaca" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">OAXACA</button>
+                                <button onclick="selectLocation('telixtlahuaca')" id="btn-telixtlahuaca" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TELIXTLAHUACA</button>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div>
+                            <p class="text-unam-gold font-semibold text-sm mb-2">Veracruz</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('tatalia')" id="btn-tatalia" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TATALIA</button>
+                            </div>
+                        </div>
+                    </aside>
 
-                <div class="bg-white border-2 border-unam-gold p-10 rounded-xl shadow-xl text-center scroll-reveal">
-                    <h2 class="font-serif text-3xl font-bold text-unam-red mb-4 uppercase tracking-widest">Localidades Mineralógicas</h2>
-                    <p class="text-geology-dark/80 mb-8 max-w-2xl mx-auto text-lg">
-                        Complementa tu experiencia virtual explorando nuestro catálogo detallado de localidades geológicas en México.
-                    </p>
-                    <a href="localidades.html" class="inline-flex items-center bg-unam-red text-white hover:bg-unam-gold font-bold py-4 px-10 rounded-full transition transform hover:scale-105 shadow-xl">
-                        Explorar Localidades
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </a>
+                    <!-- Photo panel -->
+                    <div class="flex-1">
+                        <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-8">
+                            <h2 id="gallery-title" class="font-serif text-3xl font-bold italic text-unam-red mb-2"></h2>
+                            <div class="w-24 h-0.5 bg-unam-gold mb-6"></div>
+                            <div class="relative flex items-center justify-center" style="min-height:340px; background:#f1f5f9; border-radius:0.75rem;">
+                                <button onclick="prevPhoto()" class="absolute left-3 z-10 w-12 h-12 bg-white rounded-full border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                                <img id="gallery-img" src="" alt="" class="max-w-full max-h-80 object-contain rounded-lg px-16">
+                                <button onclick="nextPhoto()" class="absolute right-3 z-10 w-12 h-12 bg-white rounded-full border border-gray-200 shadow-md flex items-center justify-center text-gray-600 hover:bg-gray-50 transition">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p id="gallery-counter" class="text-center text-unam-red font-bold text-lg mt-4"></p>
+                    </div>
                 </div>
             </section>
         </main>
@@ -193,35 +204,53 @@
     </div>
 
     <script>
-        function loadTour(tourId, videoUrl) {
-            const container = document.getElementById(tourId);
-            const iframe = document.createElement('iframe');
-            iframe.setAttribute('src', videoUrl);
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allowfullscreen', '1');
-            iframe.setAttribute('allow', 'camera; microphone; vr; autoplay; encrypted-media');
-            container.innerHTML = '';
-            container.appendChild(iframe);
-            container.style.cursor = 'default';
+        const locations = {
+            'joya-honda':    { name: 'JOYA HONDA',    folder: 'Joya Honda San Luis Potosi', count: 5 },
+            'tepetate':      { name: 'TEPETATE',      folder: 'Tepetate San Luis Potosi',   count: 11 },
+            'coyotes':       { name: 'COYOTES',       folder: 'Coyotes San Luis Potosi',    count: 4 },
+            'oaxaca':        { name: 'OAXACA',        folder: 'Oaxaca',                     count: 38 },
+            'telixtlahuaca': { name: 'TELIXTLAHUACA', folder: 'Telixtlahuaca Oaxaca',       count: 11 },
+            'tatalia':       { name: 'TATALIA',       folder: 'Tatalia Veracruz',           count: 14 }
+        };
+
+        let currentLocation = 'joya-honda';
+        let currentIndex = 1;
+
+        function selectLocation(key) {
+            currentLocation = key;
+            currentIndex = 1;
+            document.querySelectorAll('.loc-btn').forEach(btn => {
+                btn.style.background = 'white';
+                btn.style.color = '#2c2c2c';
+            });
+            const active = document.getElementById('btn-' + key);
+            active.style.background = '#8a1538';
+            active.style.color = 'white';
+            updateGallery();
         }
 
-        document.getElementById('tour-1').addEventListener('click', function() {
-            loadTour('tour-1', 'https://ingenieria-unam.netlify.app/');
-        });
+        function updateGallery() {
+            const loc = locations[currentLocation];
+            document.getElementById('gallery-title').textContent = loc.name;
+            document.getElementById('gallery-img').src = 'Imagenes/' + loc.folder + '/' + currentIndex + '.jpg';
+            document.getElementById('gallery-img').alt = loc.name + ' - Foto ' + currentIndex;
+            document.getElementById('gallery-counter').textContent = currentIndex + ' / ' + loc.count;
+        }
 
-        document.getElementById('tour-2').addEventListener('click', function() {
-            loadTour('tour-2', 'https://kuula.co/share/collection/7JJqT?logo=0&info=0&fs=1&vr=1&sd=1&initload=0&thumbs=1');
-        });
+        function prevPhoto() {
+            const loc = locations[currentLocation];
+            currentIndex = currentIndex > 1 ? currentIndex - 1 : loc.count;
+            updateGallery();
+        }
+
+        function nextPhoto() {
+            const loc = locations[currentLocation];
+            currentIndex = currentIndex < loc.count ? currentIndex + 1 : 1;
+            updateGallery();
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+            selectLocation('joya-honda');
         });
     </script>
 </body>
