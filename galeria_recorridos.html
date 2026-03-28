@@ -152,7 +152,9 @@
                             <div class="space-y-2">
                                 <button onclick="selectLocation('joya-honda')" id="btn-joya-honda" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">JOYA HONDA</button>
                                 <button onclick="selectLocation('tepetate')" id="btn-tepetate" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TEPETATE</button>
+                                <button onclick="selectLocation('el-tepetate')" id="btn-el-tepetate" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">EL TEPETATE</button>
                                 <button onclick="selectLocation('coyotes')" id="btn-coyotes" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">COYOTES</button>
+                                <button onclick="selectLocation('charcas')" id="btn-charcas" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">CHARCAS</button>
                             </div>
                         </div>
                         <div class="mb-6">
@@ -161,13 +163,29 @@
                             <div class="space-y-2">
                                 <button onclick="selectLocation('oaxaca')" id="btn-oaxaca" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">OAXACA</button>
                                 <button onclick="selectLocation('telixtlahuaca')" id="btn-telixtlahuaca" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TELIXTLAHUACA</button>
+                                <button onclick="selectLocation('ixtaltepec')" id="btn-ixtaltepec" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">IXTALTEPEC</button>
+                                <button onclick="selectLocation('mina-tejocotes')" id="btn-mina-tejocotes" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">MINA TEJOCOTES</button>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <p class="text-unam-gold font-semibold text-sm mb-2">Morelos</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('xalostoc')" id="btn-xalostoc" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">XALOSTOC</button>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <p class="text-unam-gold font-semibold text-sm mb-2">Chihuahua</p>
+                            <div class="border-b border-unam-gold mb-3"></div>
+                            <div class="space-y-2">
+                                <button onclick="selectLocation('naica')" id="btn-naica" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">NAICA</button>
                             </div>
                         </div>
                         <div>
                             <p class="text-unam-gold font-semibold text-sm mb-2">Veracruz</p>
                             <div class="border-b border-unam-gold mb-3"></div>
                             <div class="space-y-2">
-                                <button onclick="selectLocation('tatalia')" id="btn-tatalia" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TATALIA</button>
+                                <button onclick="selectLocation('tatatila')" id="btn-tatatila" class="loc-btn w-full text-left px-4 py-3 rounded-lg border border-gray-200 font-bold text-sm uppercase tracking-wide transition-all">TATATILA, VERACRUZ</button>
                             </div>
                         </div>
                     </aside>
@@ -205,20 +223,26 @@
 
     <script>
         const locations = {
-            'joya-honda':    { name: 'JOYA HONDA',    folder: 'Joya Honda San Luis Potosi', count: 5 },
-            'tepetate':      { name: 'TEPETATE',      folder: 'Tepetate San Luis Potosi',   count: 11 },
-            'coyotes':       { name: 'COYOTES',       folder: 'Coyotes San Luis Potosi',    count: 4 },
-            'oaxaca':        { name: 'OAXACA',        folder: 'Oaxaca',                     count: 38 },
-            'telixtlahuaca': { name: 'TELIXTLAHUACA', folder: 'Telixtlahuaca Oaxaca',       count: 11 },
-            'tatalia':       { name: 'TATALIA',       folder: 'Tatalia Veracruz',           count: 14 }
+            'joya-honda':    { name: 'JOYA HONDA',         folder: 'Joya Honda, SLP',       images: ['IMG_20250316_153728.jpg','IMG_20250316_153731.jpg','IMG_20250316_154003.jpg','IMG_20250316_154013.jpg','IMG_20250316_154212.jpg','SAM_9435.JPG','SAM_9436.JPG','SAM_9437.JPG','SAM_9438.JPG','SAM_9439.JPG'] },
+            'tepetate':      { name: 'TEPETATE',           folder: 'Tepetate, SLP',          images: ['IMG_20250314_145056.jpg','IMG_20250314_145059.jpg','IMG_20250314_145102.jpg','IMG_20250314_145657.jpg','IMG_20250314_150149.jpg','IMG_20250314_151428.jpg','IMG_20250314_152027.jpg','IMG_7467.JPG','IMG_7471.JPG','SAM_9378.JPG','SAM_9379.JPG','SAM_9380.JPG','SAM_9381.JPG','SAM_9382.JPG','SAM_9383.JPG','SAM_9384.JPG','SAM_9385.JPG','SAM_9386.JPG','SAM_9387.JPG','SAM_9388.JPG'] },
+            'el-tepetate':   { name: 'EL TEPETATE',        folder: 'El tepetate, SLP',       images: ['IMG_20250314_145054.jpg','IMG_20250314_145102.jpg','IMG_20250314_145654.jpg','IMG_20250314_145657.jpg','IMG_20250314_150140.jpg','IMG_20250314_151428.jpg','IMG_20250314_152027.jpg'] },
+            'coyotes':       { name: 'COYOTES',            folder: 'Coyotes, SLP',           images: ['IMG_20250316_120609.jpg','IMG_20250316_122305.jpg','IMG_20250316_125156.jpg','IMG_20250316_125945.jpg','IMG_7953_Celestita.JPG','IMG_7956_Brecha.JPG','SAM_9426.JPG','SAM_9427.JPG','SAM_9428.JPG','SAM_9429.JPG'] },
+            'charcas':       { name: 'CHARCAS',            folder: 'Charcas, SLP',           images: ['IMG_20250314_191745.jpg','IMG_20250314_204752.jpg','IMG_20250315_091029.jpg','IMG_20250315_104759.jpg','IMG_7692.JPG','IMG_7707.JPG','IMG_7716.JPG','IMG_7777.JPG'] },
+            'oaxaca':        { name: 'OAXACA',             folder: 'Oaxaca',                 images: ['20250624_113627.jpg','20250624_114257.jpg','20250624_115303.jpg','20250624_120020.jpg','20250624_123630.jpg','20250624_135815.jpg','20250624_154809.jpg','20250624_154824.jpg','20250624_160211.jpg','20250624_160907.jpg','20250624_162302.jpg','20250624_162310.jpg','20250624_162538.jpg','20250624_162542.jpg','20250624_163850.jpg','20250624_164607.jpg','20250624_164824.jpg','20250624_164825.jpg','20250624_164913.jpg','20250624_164916.jpg','20250624_165232.jpg','20250624_170216.jpg','20250625_140147.jpg','20250625_140149.jpg','20250625_141219.jpg','20250625_144220.jpg','20250627_100710.jpg','20250627_110413.jpg','20250627_112024.jpg','20250627_112032.jpg','20250627_112823.jpg','20250627_112825.jpg','20250627_113906.jpg','20250627_114404.jpg','20250627_114410.jpg','20250627_114418.jpg','20250627_164621.jpg','20250627_164632.jpg','Huamelulpan1.jpg','IMG_20250624_164907.jpg','IMG_20250624_165920.jpg','IMG_20250627_085649.jpg','IMG_20250627_085653.jpg','IMG_20250627_085654.jpg','IMG_20250627_110242.jpg','IMG_20250627_111359.jpg','IMG_20250627_112557.jpg','IMG_20250627_112646.jpg','IMG_20250627_115620_Burst03.jpg','IMG_20250627_164858.jpg','IMG_20250627_164927.jpg','IMG_20250628_092823.jpg','IMG_20250628_092916.jpg','IMG_20250628_134231.jpg','IMG_20250628_144101.jpg','KM114Nochixtlan-Huitzo.jpg','KM114Nochixtlan-Huitzo2.jpg','KM154Nochixtlan-Huitzo.jpg','KM154Nochixtlan-Huitzo2.jpg','KM156Nochixtlan-Huitzo.jpg','LaCumbreNochixtlan1.jpg','LaCumbreNochixtlan2.jpg','LaCumbreNochixtlan3.jpg','MinaElAguila1.jpg','MinaElAguila2.jpg','MinaElAguila3.jpg','MinaElAguila4.jpg','MinaElAguila5.jpg','MinaElAguila6.jpg','MinaElAguila7.jpg','MinaElAguila8.jpg','MinaElAguila9.jpg','MinaElAguila10.jpg','MinaElAguila11.jpg','Nativitas1.JPG','Nativitas2.JPG','Nativitas3.JPG','Nativitas4.JPG','Nativitas5.JPG','Nativitas6.JPG','Nativitas7.JPG','Nativitas8.JPG','Nativitas9.JPG','PXL_20250623_181507782.jpg','PXL_20250623_181519967.jpg','PXL_20250623_181625717.jpg','PXL_20250623_182936570.jpg','Pegma2Ayoquezco1.jpg','Pegma2Ayoquezco2.jpg','Pegma2Ayoquezco3.jpg','Pegma2Ayoquezco4.jpg','Pegma2Ayoquezco5.jpg','PegmaLaJoya1.jpg','PegmaLaJoya2.jpg','PegmaLaJoya3.jpg','PegmaLaJoya4.jpg','PegmaLaJoya5.jpg','PegmaLaJoya6.jpg','PegmaLaJoya7.JPG','PegmaLaJoya8.JPG','PegmaLaJoya9.jpg','PegmaLaJoya10.jpg','PegmaLaJoya11.jpg','PegmaLaJoya12.jpg','PegmaLaJoya13.jpg','PegmaTlapacoyan1.jpg','PegmaTlapacoyan2.jpg','PegmaTlapacoyan3.jpg','PegmaTlapacoyan4.JPG','PegmaTlapacoyan5.JPG','PegmaTlapacoyan6.jpg','PegmaTlapacoyan7.JPG','PegmaTlapacoyan8.JPG','PegmaTlapacoyan9.JPG','SantiagoMatatlan.jpg','Tlaxiaco1.jpg','Tlaxiaco2.jpg','Tlaxiaco3.jpg','Tlaxiaco4.jpg','Tlaxiaco5.jpg','Tlaxiaco6.jpg','Tlaxiaco7.jpg','Tlaxiaco8.jpg','Tlaxiaco9.jpg','Tlaxiaco10.jpg','Tlaxiaco12.jpg','Tlaxiaco13.jpg','ValleDeLasRocas1.jpg','ValleDeLasRocas2.jpg','ValleDeLasRocas3.jpg','mirador Tehuacan-Oaxaca.jpg'] },
+            'telixtlahuaca': { name: 'TELIXTLAHUACA',      folder: 'Telixtlahuaca, Oax',     images: ['20250626_105826.jpg','20250626_113001.jpg','20250626_113018.jpg','20250626_113428.jpg','20250626_134018.jpg','20250626_134148.jpg','20250626_134611.jpg','20250626_135028.jpg','20250626_135818.jpg','20250626_141325.jpg','20250626_142448.jpg','IMG_20250626_113407.jpg','IMG_20250626_120155.jpg','IMG_20250626_134554.jpg','IMG_20250626_142440.jpg','MinaGrafitoTelixtlahuaca1.jpg','MinaGrafitoTelixtlahuaca2.jpg','MinaGrafitoTelixtlahuaca3.jpg','MinaGrafitoTelixtlahuaca4.jpg','MinaGrafitoTelixtlahuaca5.jpg','MinaGrafitoTelixtlahuaca6.jpg','MinaGrafitoTelixtlahuaca7.jpg','MinaGrafitoTelixtlahuaca8.jpg','MinaGrafitoTelixtlahuaca9.jpg','MinaGrafitoTelixtlahuaca10.jpg','MinaGrafitoTelixtlahuaca11.jpg','MinaGrafitoTelixtlahuaca12.jpg','MinaGrafitoTelixtlahuaca13.jpg','MinaGrafitoTelixtlahuaca14.jpg','MinaGrafitoTelixtlahuaca15.jpg','MinaGrafitoTelixtlahuaca16.jpg','MinaGrafitoTelixtlahuaca17.jpg','MinaGrafitoTelixtlahuaca18.jpg','MinaGrafitoTelixtlahuaca19.jpg','PegmaElMuerto1.jpg','PegmaElMuerto2.jpg','PegmaElMuerto3.jpg','PegmaElMuerto4.jpg','PegmaElMuerto5.jpg','PegmaElMuerto6.jpg','PegmaElMuerto7.jpg','PegmaElMuerto8.jpg','PegmaElMuerto9.jpg','PegmaElMuerto10.jpg','PegmaElMuerto11.jpg','PegmaElMuerto12.jpg','PegmaElMuerto13.jpg','PegmaElMuerto14.jpg','PegmaElMuerto15.jpg','PegmaElMuerto17.jpg','PegmaElMuerto18.jpg','PegmaElMuerto19.jpg'] },
+            'ixtaltepec':    { name: 'IXTALTEPEC',         folder: 'Ixtaltepec, Oax',        images: ['SantiagoIxtaltepec1.jpg','SantiagoIxtaltepec2.jpg','SantiagoIxtaltepec3.jpg','SantiagoIxtaltepec4.jpg','SantiagoIxtaltepec5.jpg','SantiagoIxtaltepec6.jpg','SantiagoIxtaltepec7.jpg','SantiagoIxtaltepec8.jpg'] },
+            'mina-tejocotes':{ name: 'MINA TEJOCOTES',     folder: 'Mina tejocotes, Oax',    images: ['IMG_8059.JPG','IMG_8061_stibinita.JPG','IMG_8070.JPG'] },
+            'xalostoc':      { name: 'XALOSTOC',           folder: 'Xalostoc, Mor',          images: ['IMG_7853.JPG'] },
+            'naica':         { name: 'NAICA',              folder: 'Naica, Chi',             images: ['IMG_7774_Fluorita.JPG','IMG_7794_fluorita.JPG','IMG_7799_fluorita.JPG','IMG_7900_esfalerita.JPG','IMG_7926_celenita.JPG','IMG_7930_yeso.JPG','IMG_7933_anhidrita.JPG','IMG_7934_yeso.JPG','IMG_7945_yeso.JPG','IMG_7951_galena.JPG'] },
+            'tatatila':      { name: 'TATATILA, VERACRUZ', folder: 'Tatatila, Veracruz',     images: ['IMG_20241123_130750.jpg','IMG_20241123_131738.jpg','IMG_20241123_133756.jpg','IMG_20241123_133846.jpg','IMG_20241123_135549.jpg','IMG_20241123_161437.jpg','IMG_20241123_163942.jpg','IMG_20241124_123737.jpg','IMG_20241124_130947.jpg','IMG_20241124_134655.jpg','IMG_20241124_142058.jpg','IMG_20241124_143445.jpg','IMG_20241124_143529.jpg','IMG_20241126_125224.jpg'] }
         };
 
         let currentLocation = 'joya-honda';
-        let currentIndex = 1;
+        let currentIndex = 0;
 
         function selectLocation(key) {
             currentLocation = key;
-            currentIndex = 1;
+            currentIndex = 0;
             document.querySelectorAll('.loc-btn').forEach(btn => {
                 btn.style.background = 'white';
                 btn.style.color = '#2c2c2c';
@@ -232,20 +256,20 @@
         function updateGallery() {
             const loc = locations[currentLocation];
             document.getElementById('gallery-title').textContent = loc.name;
-            document.getElementById('gallery-img').src = 'Imagenes/' + loc.folder + '/' + currentIndex + '.jpg';
-            document.getElementById('gallery-img').alt = loc.name + ' - Foto ' + currentIndex;
-            document.getElementById('gallery-counter').textContent = currentIndex + ' / ' + loc.count;
+            document.getElementById('gallery-img').src = 'Imagenes/' + loc.folder + '/' + loc.images[currentIndex];
+            document.getElementById('gallery-img').alt = loc.name + ' - Foto ' + (currentIndex + 1);
+            document.getElementById('gallery-counter').textContent = (currentIndex + 1) + ' / ' + loc.images.length;
         }
 
         function prevPhoto() {
             const loc = locations[currentLocation];
-            currentIndex = currentIndex > 1 ? currentIndex - 1 : loc.count;
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : loc.images.length - 1;
             updateGallery();
         }
 
         function nextPhoto() {
             const loc = locations[currentLocation];
-            currentIndex = currentIndex < loc.count ? currentIndex + 1 : 1;
+            currentIndex = currentIndex < loc.images.length - 1 ? currentIndex + 1 : 0;
             updateGallery();
         }
 
