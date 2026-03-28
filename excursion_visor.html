@@ -169,7 +169,21 @@
     </div>
 
     <script>
-        const ordenGuias = ["TEPETATE", "CHARCAS", "XALOSTOC", "BOLEO", "CERRO DEL MERCADO", "TELIXTLAHUACA"];
+        const ordenGuias = ["TEPETATE", "CHARCAS", "XALOSTOC", "BOLEO", "CERRO DEL MERCADO", "TELIXTLAHUACA", "LOS TEJOCOTES", "LOS COYOTES SAN LUIS POTOSI", "AYOQUEZCO EJUTLA", "NAICA", "MINA REDENTOR QUERETARO"];
+
+        const pdfPaths = {
+            "TEPETATE":                   "Imagenes/EL TEPETATE/GUIA EL TEPETATE.pdf",
+            "CHARCAS":                    "Imagenes/CHARCAS/GUIA CHARCAS.pdf",
+            "XALOSTOC":                   "Imagenes/XALOSTOC/GUIA XALOSTOC.pdf",
+            "BOLEO":                      "Imagenes/EL BOLEO/GUIA BOLEO.pdf",
+            "CERRO DEL MERCADO":          "Imagenes/CERRO DEL MERCADO/Cerro del Mercado.pdf",
+            "TELIXTLAHUACA":              "Imagenes/TELIXTAHUACA/San Francisco Telixtlahuaca.pdf",
+            "LOS TEJOCOTES":              "Imagenes/LOS TEJOCOTES/Localidad Los Tejocotes.pdf",
+            "LOS COYOTES SAN LUIS POTOSI":"Imagenes/LOS COYOTES SAN LUIS POTOSI/VISITA CELESTITA EN LOS COYOTES.pdf",
+            "AYOQUEZCO EJUTLA":           "Imagenes/AYOQUEZCO EJUTLA/Pegmatitas de Oaxaca.pdf",
+            "NAICA":                      "Imagenes/NAICA/naica.pdf",
+            "MINA REDENTOR QUERETARO":    "Imagenes/MINA REDENTOR QUERETARO/Mina el redentor ópalo 2.pdf"
+        };
 
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -182,7 +196,7 @@
             const btnSiguiente = document.getElementById('btn-siguiente');
 
             titleElement.innerText = localidadActual;
-            pdfElement.src = `Imagenes/${localidadActual}/${localidadActual}.pdf`;
+            pdfElement.src = pdfPaths[localidadActual] || `Imagenes/${localidadActual}/${localidadActual}.pdf`;
 
             if (index > 0) {
                 btnAnterior.onclick = () => {
