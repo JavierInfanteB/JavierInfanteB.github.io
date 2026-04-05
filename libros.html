@@ -100,7 +100,13 @@
                     </div>
                     
                     <input type="checkbox" id="menu-toggle" class="hidden">
-                    <label for="menu-toggle" class="hamburger text-3xl md:text-4xl text-geology-dark cursor-pointer ml-2">&#9776;</label>
+                    <label for="menu-toggle" class="hamburger text-geology-dark cursor-pointer ml-2 inline-flex items-center">
+                        <svg width="32" height="28" viewBox="0 0 32 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="1" width="32" height="3.5" rx="1.75"/>
+                            <rect x="0" y="12.25" width="32" height="3.5" rx="1.75"/>
+                            <rect x="0" y="23.5" width="32" height="3.5" rx="1.75"/>
+                        </svg>
+                    </label>
                     
                     <ul class="nav-menu absolute top-full left-0 w-64 bg-white shadow-xl hidden flex-col space-y-2 p-4 rounded-lg mt-2 z-50">
                         <li><a href="index.html" class="nav-link text-geology-dark transition duration-200">Inicio</a></li>
@@ -115,7 +121,7 @@
                         <h1 class="font-serif text-base md:text-xl lg:text-2xl font-extrabold text-unam-red leading-tight uppercase">
                             GUIA DE EXCURSIONES A LOCALIDADES MINERALOGICAS DE MEXICO Y LIBRO SOBRE EL ACERVO HISTORICO DE LAS COLECCIONES Y EL EQUIPO ANTIGUO DEL LABORATORIO DE MINERALOGIA DE LA FACULTAD DE INGENIERIA
                         </h1>
-                        <p class="text-xs md:text-sm text-geology-dark font-medium italic mt-1">
+                        <p class="text-sm md:text-lg font-bold text-geology-dark italic mt-1">
                             PAPIME PE108024
                         </p>
                     </div>
@@ -134,56 +140,21 @@
     <main class="container mx-auto px-6 py-12">
         <section class="mb-16 scroll-reveal">
             <h1 class="hero-title uppercase mb-4">Acervo<br><span class="text-geology-dark">Histórico</span></h1>
-            <p class="text-xl text-unam-red font-bold italic max-w-2xl">
-                Material de apoyo técnico y académico para el estudio de la Geología.
-            </p>
         </section>
 
         <section class="mb-20 scroll-reveal" data-delay="200">
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h2 class="text-2xl font-bold text-unam-red uppercase tracking-wider">Acervo Histórico</h2>
-                    <p class="text-geology-dark font-medium">Guía interactiva para laboratorio y campo.</p>
+                    <h2 class="text-2xl font-bold text-unam-red uppercase tracking-wider">Colecciones y equipo antiguo del laboratorio de mineralogía de la Facultad de Ingeniería.</h2>
                 </div>
-                <a href="https://publuu.com/flip-book/552109/2107511" target="_blank" class="bg-unam-red hover:bg-red-800 text-white px-8 py-3 rounded-full font-bold transition flex items-center gap-2 shadow-lg">
+                <a href="https://publuu.com/flip-book/552109/2408037" target="_blank" class="bg-unam-red hover:bg-red-800 text-white px-8 py-3 rounded-full font-bold transition flex items-center gap-2 shadow-lg">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     Abrir en pantalla completa
                 </a>
             </div>
 
             <div class="resource-viewer">
-                <iframe src="https://publuu.com/flip-book/552109/2107511?embed" width="100%" height="100%" allowfullscreen poster="https://publuu.com/flip-book/552109/2107511/thumb.jpg"></iframe>
-            </div>
-        </section>
-
-        <section class="mb-12 scroll-reveal">
-            <h3 class="text-xl font-bold text-unam-red mb-8 border-l-8 border-unam-gold pl-4 uppercase tracking-widest">Información del Recurso</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <div class="resource-card p-8 rounded-xl shadow-sm">
-                    <div class="text-unam-gold mb-4">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-geology-dark mb-2 uppercase">Tipo de Material</h4>
-                    <p class="text-geology-dark text-sm leading-relaxed">Manual de prácticas geológicas, optimizado para consulta digital interactiva.</p>
-                </div>
-
-                <div class="resource-card p-8 rounded-xl shadow-sm">
-                    <div class="text-unam-gold mb-4">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-geology-dark mb-2 uppercase">Autoría</h4>
-                    <p class="text-geology-dark text-sm leading-relaxed">Desarrollado por el equipo académico del proyecto PAPIME, Facultad de Ingeniería - UNAM.</p>
-                </div>
-
-                <div class="resource-card p-8 rounded-xl shadow-sm">
-                    <div class="text-unam-gold mb-4">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-geology-dark mb-2 uppercase">Uso Académico</h4>
-                    <p class="text-geology-dark text-sm leading-relaxed">Material diseñado para fortalecer el aprendizaje práctico en el área de ingeniería geológica.</p>
-                </div>
-
+                <iframe src="https://publuu.com/flip-book/552109/2408037?embed" width="100%" height="100%" allowfullscreen poster="https://publuu.com/flip-book/552109/2408037/thumb.jpg"></iframe>
             </div>
         </section>
     </main>
