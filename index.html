@@ -281,9 +281,12 @@
     font-size: .95rem;
   }
   @media (max-width: 760px) {
-    #menu { justify-content: flex-start; padding-top: 8px; }
+    #menu { justify-content: flex-start; padding-top: 24px; }
     .layout { flex-direction: column; align-items: center; }
-    .escena { order: -1; flex: none; width: min(290px, 76vw); margin: 0 0 16px; }
+    /* el círculo mágico se queda dentro de la escena (no sobresale) y el báculo, que gira 360°,
+       tiene margen arriba y abajo: así nada se corta con el borde ni se encima con el título */
+    .escena { order: -1; flex: none; width: min(240px, 64vw); margin: 20px 0 44px; }
+    .circulo { width: 100%; }
     .layout .left { flex: none; width: 100%; }
     .layout .left h1,
     .layout .left .lead { text-align: center; }
