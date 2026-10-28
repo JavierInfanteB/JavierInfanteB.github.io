@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 20 300 240" width="300" height="240" stroke-linejoin="round" stroke-linecap="round">
+<defs>
+<linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8703f"/><stop offset="1" stop-color="#6f4528"/></linearGradient>
+<linearGradient id="wood2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b87a45"/><stop offset="1" stop-color="#7a4c2c"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9b85a"/><stop offset="1" stop-color="#8f7430"/></linearGradient>
+<linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4d9e0"/><stop offset="1" stop-color="#8a909a"/></linearGradient>
+<linearGradient id="leather" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a46a3d"/><stop offset="1" stop-color="#6a3f22"/></linearGradient>
+<linearGradient id="tongue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e08a86"/><stop offset="1" stop-color="#b85a58"/></linearGradient>
+</defs>
+<rect x="40" y="130" width="220" height="110" fill="url(#wood)" stroke="#2b1d14" stroke-width="3"/>
+<line x1="84.0" y1="130" x2="84.0" y2="240" stroke="#2b1d14" stroke-width="1.6" opacity=".6"/>
+<line x1="128.0" y1="130" x2="128.0" y2="240" stroke="#2b1d14" stroke-width="1.6" opacity=".6"/>
+<line x1="172.0" y1="130" x2="172.0" y2="240" stroke="#2b1d14" stroke-width="1.6" opacity=".6"/>
+<line x1="216.0" y1="130" x2="216.0" y2="240" stroke="#2b1d14" stroke-width="1.6" opacity=".6"/>
+<path d="M40 130 V100 Q40 52 150 52 Q260 52 260 100 V130 Z" fill="url(#wood2)" stroke="#2b1d14" stroke-width="3"/>
+<line x1="80" y1="62" x2="80" y2="130" stroke="#2b1d14" stroke-width="1.6" opacity=".55"/>
+<line x1="150" y1="56" x2="150" y2="130" stroke="#2b1d14" stroke-width="1.6" opacity=".55"/>
+<line x1="220" y1="62" x2="220" y2="130" stroke="#2b1d14" stroke-width="1.6" opacity=".55"/>
+<rect x="40" y="80" width="10" height="160" fill="url(#metal)" stroke="#2b1d14" stroke-width="2.4"/>
+<rect x="118" y="52" width="10" height="188" fill="url(#metal)" stroke="#2b1d14" stroke-width="2.4"/>
+<rect x="182" y="52" width="10" height="188" fill="url(#metal)" stroke="#2b1d14" stroke-width="2.4"/>
+<rect x="252" y="80" width="10" height="160" fill="url(#metal)" stroke="#2b1d14" stroke-width="2.4"/>
+<rect x="40" y="124" width="220" height="12" fill="url(#metal)" stroke="#2b1d14" stroke-width="2.4"/>
+<rect x="132" y="116" width="36" height="42" rx="6" fill="url(#metal)" stroke="#2b1d14" stroke-width="3"/>
+<circle cx="150" cy="134" r="6" fill="#2b1d14"/><rect x="148" y="134" width="4" height="12" fill="#2b1d14"/>
+</svg>

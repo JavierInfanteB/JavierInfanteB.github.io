@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<defs>
+<radialGradient id="pet" cx="50%" cy="100%" r="110%">
+  <stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#e4e9fb"/><stop offset="1" stop-color="#9fb2ee"/>
+</radialGradient>
+<radialGradient id="cen" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d6defa"/></radialGradient>
+</defs>
+<g transform="translate(100 100) rotate(0) scale(1.4)">
+<g transform="rotate(0)"><path d="M0 0 C-24 -18 -30 -50 -10 -62 Q0 -67 10 -62 C30 -50 24 -18 0 0 Z" fill="url(#pet)" stroke="#7f93d6" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 -6 V-54 M-2 -10 C-10 -26 -12 -40 -8 -52 M2 -10 C10 -26 12 -40 8 -52" stroke="#9aaae8" stroke-width=".9" fill="none" stroke-linecap="round"/></g>
+<g transform="rotate(72)"><path d="M0 0 C-24 -18 -30 -50 -10 -62 Q0 -67 10 -62 C30 -50 24 -18 0 0 Z" fill="url(#pet)" stroke="#7f93d6" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 -6 V-54 M-2 -10 C-10 -26 -12 -40 -8 -52 M2 -10 C10 -26 12 -40 8 -52" stroke="#9aaae8" stroke-width=".9" fill="none" stroke-linecap="round"/></g>
+<g transform="rotate(144)"><path d="M0 0 C-24 -18 -30 -50 -10 -62 Q0 -67 10 -62 C30 -50 24 -18 0 0 Z" fill="url(#pet)" stroke="#7f93d6" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 -6 V-54 M-2 -10 C-10 -26 -12 -40 -8 -52 M2 -10 C10 -26 12 -40 8 -52" stroke="#9aaae8" stroke-width=".9" fill="none" stroke-linecap="round"/></g>
+<g transform="rotate(216)"><path d="M0 0 C-24 -18 -30 -50 -10 -62 Q0 -67 10 -62 C30 -50 24 -18 0 0 Z" fill="url(#pet)" stroke="#7f93d6" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 -6 V-54 M-2 -10 C-10 -26 -12 -40 -8 -52 M2 -10 C10 -26 12 -40 8 -52" stroke="#9aaae8" stroke-width=".9" fill="none" stroke-linecap="round"/></g>
+<g transform="rotate(288)"><path d="M0 0 C-24 -18 -30 -50 -10 -62 Q0 -67 10 -62 C30 -50 24 -18 0 0 Z" fill="url(#pet)" stroke="#7f93d6" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 -6 V-54 M-2 -10 C-10 -26 -12 -40 -8 -52 M2 -10 C10 -26 12 -40 8 -52" stroke="#9aaae8" stroke-width=".9" fill="none" stroke-linecap="round"/></g>
+<circle r="15" fill="url(#cen)" stroke="#aebcf0" stroke-width="1"/>
+<circle cx="7.3" cy="5.3" r="2.2" fill="#3e4688"/>
+<circle cx="-2.8" cy="8.6" r="2.2" fill="#3e4688"/>
+<circle cx="-9.0" cy="0.0" r="2.2" fill="#3e4688"/>
+<circle cx="-2.8" cy="-8.6" r="2.2" fill="#3e4688"/>
+<circle cx="7.3" cy="-5.3" r="2.2" fill="#3e4688"/>
+<circle r="3" fill="#ffffff"/></g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -50 420 520" width="420" height="520">
+<defs>
+<linearGradient id="c1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9fbff"/><stop offset="1" stop-color="#6fe0e6"/></linearGradient>
+<linearGradient id="c2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd6e0"/><stop offset="1" stop-color="#1f93b8"/></linearGradient>
+<linearGradient id="c3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa6c8"/><stop offset="1" stop-color="#145a86"/></linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#bff6ff" stop-opacity=".95"/><stop offset=".45" stop-color="#4fd0e8" stop-opacity=".45"/><stop offset="1" stop-color="#4fd0e8" stop-opacity="0"/></radialGradient>
+</defs>
+<circle cx="150" cy="190" r="190" fill="url(#glow)"/>
+<line x1="270" y1="190" x2="325" y2="190" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="261" y1="236" x2="344" y2="270" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="235" y1="275" x2="274" y2="314" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="196" y1="301" x2="230" y2="384" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="150" y1="310" x2="150" y2="365" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="104" y1="301" x2="70" y2="384" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="65" y1="275" x2="26" y2="314" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="39" y1="236" x2="-44" y2="270" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="30" y1="190" x2="-25" y2="190" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="39" y1="144" x2="-44" y2="110" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="65" y1="105" x2="26" y2="66" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="104" y1="79" x2="70" y2="-4" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="150" y1="70" x2="150" y2="15" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="196" y1="79" x2="230" y2="-4" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="235" y1="105" x2="274" y2="66" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<line x1="261" y1="144" x2="344" y2="110" stroke="#d9fbff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+<g stroke="#e8fdff" stroke-width="2" stroke-linejoin="round"><path d="M150 50 L106 130 L120 280 L150 240 L150 130 Z" fill="url(#c1)"/><path d="M150 50 L150 130 L150 240 L180 300 L196 140 Z" fill="url(#c2)"/><path d="M120 280 L150 240 L180 300 L150 350 Z" fill="url(#c3)"/><path d="M106 130 L90 210 L120 280 Z" fill="#8aeef0"/><path d="M196 140 L210 220 L180 300 Z" fill="#2aa3c4"/></g>
+<path d="M124 140 L132 190 M136 110 L142 130" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+<circle cx="138" cy="160" r="3.2" fill="#fff"/>
+</svg>
