@@ -2518,17 +2518,14 @@
   function terminarIntro() {
     if (terminada) return;
     terminada = true;
-    try { sessionStorage.setItem("introVista", "1"); } catch (e) {}
     if (raf) cancelAnimationFrame(raf);
     intro.classList.add("fade");
     setTimeout(() => { intro.hidden = true; }, 800);
     show("menu");
   }
 
-  // Al recargar la página la intro no se repite (solo en la primera visita de la pestaña)
-  let yaVista = false;
-  try { yaVista = sessionStorage.getItem("introVista") === "1"; } catch (e) {}
-  if (reduce || yaVista) {
+  // La intro sale en cada carga o recarga; solo se salta con "reducir movimiento"
+  if (reduce) {
     terminada = true;
     intro.hidden = true;
     show("menu");
