@@ -119,7 +119,7 @@
     text-align: center;
     margin: 0 0 8px;
   }
-  h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); color: var(--amber); }
+  h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); color: var(--amber); text-shadow: 0 0 18px rgba(217, 164, 65, .35), 0 2px 3px rgba(0, 0, 0, .55); }
   h2 { font-size: clamp(1.3rem, 4vw, 1.9rem); }
   .lead {
     text-align: center;
@@ -144,6 +144,7 @@
       radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgba(111, 211, 200, calc(.17 * var(--g))), transparent 70%),
       linear-gradient(180deg, rgba(111, 211, 200, .10), rgba(20, 28, 24, .38));
     box-shadow:
+      0 16px 30px -14px rgba(0, 0, 0, .75),
       0 0 26px rgba(111, 211, 200, .10),
       inset 0 0 0 4px rgba(20, 28, 24, .55),
       inset 0 0 0 5px var(--filete),
@@ -188,6 +189,7 @@
     outline: none;
     border-color: var(--amber);
     box-shadow:
+      0 22px 36px -14px rgba(0, 0, 0, .85),
       0 0 34px rgba(111, 211, 200, .22),
       0 0 16px rgba(217, 164, 65, .18),
       inset 0 0 0 4px rgba(20, 28, 24, .55),
@@ -460,12 +462,15 @@
     font-size: .9rem;
     letter-spacing: .08em;
     color: var(--ink);
-    background: var(--amber);
+    background: linear-gradient(180deg, #ecbf5f, var(--amber));
     padding: 10px 18px;
     border-radius: 10px;
     text-decoration: none;
+    box-shadow: 0 8px 16px -8px rgba(217, 164, 65, .7), 0 2px 4px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .4);
+    transition: box-shadow .2s, filter .2s;
   }
-  .link[aria-disabled="true"] { background: rgba(244, 239, 226, .15); color: var(--sage); }
+  .link:not([aria-disabled="true"]):hover { filter: brightness(1.08); box-shadow: 0 10px 22px -8px rgba(217, 164, 65, .9), 0 2px 4px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .5); }
+  .link[aria-disabled="true"] { background: rgba(244, 239, 226, .15); color: var(--sage); box-shadow: none; }
 
   .back {
     margin-top: 28px;
@@ -479,7 +484,10 @@
     border-radius: 10px;
     padding: 10px 18px;
     cursor: pointer;
+    box-shadow: 0 8px 14px -8px rgba(0, 0, 0, .8);
+    transition: background .2s, border-color .2s, box-shadow .2s;
   }
+  .back:hover { background: rgba(217, 164, 65, .16); border-color: var(--amber); box-shadow: 0 8px 14px -8px rgba(0, 0, 0, .8), 0 0 18px rgba(217, 164, 65, .3); }
   .back:focus-visible, .link:focus-visible { outline: 2px solid var(--lavender); outline-offset: 3px; }
 
   /* ---------- Símbolo propio (simbolos/): marca de agua grande que llena toda la tarjeta, entera y sin recortarse ---------- */
@@ -650,11 +658,24 @@
     100% { transform: scale(1.1); }
   }
 
+  /* ---------- Detalles: profundidad ---------- */
+  /* los personajes y objetos se despegan de la tarjeta con una sombra de caída */
+  .card .chibi, .ficha-head .chibi, .obj-img { filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .5)); }
+  /* viñeta: bordes de la pantalla más oscuros para llevar la vista al centro */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .4));
+    pointer-events: none;
+  }
+  .equipo a:hover, .equipo a:focus-visible { box-shadow: 0 0 14px rgba(217, 164, 65, .25); }
+
   @media (prefers-reduced-motion: reduce) {
     .obj-img, .obj-img.muerde, .card > .halo, #dragon-cuerpo, #dragon .humo path { animation: none; transition: none; }
     #dragon .humo path { opacity: .8; }
     .intro-title, .intro-sub, .intro-hint, .screen, .circulo svg { animation: none; }
-    .opt, .card, .ficha, .card::after { transition: none; }
+    .opt, .card, .ficha, .card::after, .link, .back { transition: none; }
     #intro { transition: none; }
   }
 </style>
