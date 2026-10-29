@@ -6,7 +6,7 @@
 <title>Javier Infante · Portafolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #f4efe2;
@@ -17,7 +17,7 @@
     --lavender: #b9a6d6;
     --teal: #6fd3c8;
     --display: "Cinzel", "Times New Roman", serif;
-    --body: "Cormorant Garamond", Georgia, serif;
+    --body: "EB Garamond", Georgia, serif;
   }
 
   * { box-sizing: border-box; }
@@ -438,6 +438,22 @@
     background: rgba(107, 74, 47, .1);
     box-shadow: none;
   }
+  /* tarjetas grandes pero compactas: en pantalla grande todo queda por encima del dragón */
+  #sobre .lead { margin-bottom: 20px; }
+  #sobre .grid {
+    width: min(1400px, 100%);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 26px;
+  }
+  #sobre .grid > .card { max-width: 520px; padding: 22px 26px 52px; gap: 10px; }
+  #sobre .card .chibi { width: clamp(84px, 13.4vh, 140px); height: clamp(82px, 13vh, 136px); }
+  #sobre .card h3 { font-size: 1.3rem; }
+  #sobre .card p { font-size: 1.1rem; line-height: 1.4; }
+  #sobre .card .nota { font-size: .96rem; opacity: .85; }
+  #sobre .card .tags { justify-content: center; margin: 0; gap: 8px; }
+  #sobre .card .tags li { font-size: 1rem; padding: 4px 14px; }
+  .puntos { margin: 0 0 20px; padding-left: 20px; line-height: 1.5; }
+  .puntos li { margin: 0 0 8px; }
   .link {
     display: inline-block;
     font-family: var(--display);
@@ -544,6 +560,70 @@
     text-shadow: 0 0 6px #f1e6c8, 0 0 10px #f1e6c8, 0 0 2px #f1e6c8;
   }
   #sobre .card > .halo { opacity: .22; }
+
+  /* ---------- Colorimetría: letras más firmes y marcas de agua más tenues ---------- */
+  .card > .halo, .ficha > .halo { opacity: .12; }
+  .card:hover > .halo, .card:focus-visible > .halo { opacity: .22; }
+  #sobre .card > .halo { opacity: .09; }
+  .card p { color: #d6e8d2; font-weight: 600; }
+  .ficha p.desc, .puntos li { color: #f8f3e6; font-weight: 500; }
+  .ficha-sub { font-weight: 600; color: #cdbbe8; }
+  .tags li { font-weight: 600; color: #e6f8f8; background: rgba(10, 16, 13, .6); border-color: rgba(191, 230, 232, .75); }
+  #sobre .card p { color: #2c1b0e; font-weight: 700; }
+  #sobre .card .nota { opacity: 1; color: #3a2412; font-weight: 600; }
+  #sobre .tags li { font-weight: 700; color: #2c1b0e; background: rgba(250, 242, 220, .8); border-color: #5a3d24; }
+  .back { background: rgba(10, 16, 13, .85); color: #f0bf5a; border-color: rgba(240, 191, 90, .75); font-weight: 700; }
+  .puntos { font-size: 1.05rem; }
+  @media (min-width: 1000px) {
+    .puntos { columns: 2; column-gap: 36px; }
+    .puntos li { break-inside: avoid; }
+  }
+  /* laptops de pantalla baja (p. ej. 1366×768): todo más compacto para no pisar al dragón */
+  @media (min-width: 900px) and (max-height: 860px) {
+    .screen { padding-top: 14px; }
+    h1 { font-size: 1.7rem; }
+    .lead { margin-bottom: 12px; }
+    #sobre .lead { margin-bottom: 12px; }
+    #sobre .grid > .card { padding: 14px 20px 44px; gap: 6px; }
+    #sobre .card .chibi { width: 78px; height: 76px; }
+    #sobre .card h3 { font-size: 1.1rem; }
+    #sobre .card p { font-size: .98rem; line-height: 1.3; }
+    #sobre .card .nota { font-size: .9rem; }
+    #sobre .card .tags { gap: 6px; }
+    #sobre .card .tags li { font-size: .88rem; padding: 2px 10px; }
+    .ficha { padding: 16px 20px; }
+    .ficha-head { margin-bottom: 8px; gap: 12px; }
+    .ficha-head .chibi { width: 56px; height: 55px; }
+    .ficha p.desc { font-size: 1rem; line-height: 1.4; margin-bottom: 8px; }
+    .puntos { font-size: .93rem; line-height: 1.35; margin-bottom: 10px; }
+    .puntos li { margin-bottom: 5px; }
+    .ficha .tags { margin-bottom: 10px; }
+    .ficha .tags li { font-size: .82rem; padding: 2px 10px; }
+    .equipo { margin-bottom: 10px; }
+    .back { margin-top: 12px; }
+  }
+
+  /* ---------- Tipografía: tamaños que crecen con el alto de la pantalla (EB Garamond, sin cursiva en tarjetas) ---------- */
+  @media (min-width: 900px) {
+    .lead { font-size: clamp(1.1rem, 2.1vh, 1.35rem); }
+    #sobre .card h3 { font-size: clamp(1.15rem, 2.4vh, 1.5rem); }
+    #sobre .card p { font-size: clamp(1.08rem, 2vh, 1.35rem); font-style: normal; line-height: 1.35; }
+    #sobre .card .nota { font-size: clamp(1.02rem, 1.9vh, 1.25rem); font-style: normal; }
+    #sobre .card .tags li { font-size: clamp(.98rem, 1.8vh, 1.15rem); padding: 3px 13px; }
+    .card p { font-size: clamp(1rem, 1.9vh, 1.2rem); }
+    .ficha h2 { font-size: clamp(1.5rem, 3.2vh, 2rem); }
+    .ficha-sub { font-size: clamp(1.05rem, 2vh, 1.3rem); }
+    .ficha p.desc { font-size: clamp(1.1rem, 2vh, 1.3rem); }
+    .puntos { font-size: clamp(1.05rem, 1.9vh, 1.25rem); }
+    .ficha .tags li { font-size: clamp(.95rem, 1.7vh, 1.1rem); }
+    .link, .back { font-size: clamp(.95rem, 1.8vh, 1.1rem); }
+  }
+  @media (max-width: 899px) {
+    #sobre .card p { font-style: normal; font-size: 1.15rem; }
+    #sobre .card .nota { font-style: normal; font-size: 1.05rem; }
+    #sobre .card .tags li { font-size: 1.02rem; }
+    .puntos { font-size: 1.08rem; }
+  }
 
   /* flores de luna azul a los lados del subtítulo (menos en el menú de inicio) */
   .screen:not(#menu) .lead::before,
@@ -1885,16 +1965,34 @@
       <div class="card">
         <span class="chibi" data-chibi="fern"></span>
         <h3>ESTUDIOS</h3>
-        <p>Facultad de Ingeniería, UNAM</p>
+        <p>Ingeniería en Computación · UNAM<br>11.º semestre</p>
+        <p class="nota">Me tomé mi tiempo en la carrera para llenarla de lo que me gusta:</p>
+        <ul class="tags">
+          <li>Bases de datos</li>
+          <li>BD avanzadas</li>
+          <li>DevOps</li>
+          <li>Lenguaje natural y LLMs (por mi cuenta)</li>
+        </ul>
       </div>
       <div class="card">
         <span class="chibi" data-chibi="stark"></span>
         <h3>GUSTOS</h3>
+        <p class="nota">Me gustan la dificultad y los retos autoimpuestos.</p>
         <ul class="tags">
-          <li>Pokémon · Dragapult</li>
-          <li>Aviación y cazas</li>
-          <li>Noticias de México</li>
-          <li>Generar imágenes con prompts</li>
+          <li>Pokémon</li>
+          <li>Soulslike</li>
+          <li>Ajedrez</li>
+          <li>Voleibol</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="chibi" data-chibi="heiter"></span>
+        <h3>ARTE Y MÚSICA</h3>
+        <p class="nota">Trabajo mejor con música relajante, y al terminar un reto disfruto su arte y su música.</p>
+        <ul class="tags">
+          <li>Amante de Ado</li>
+          <li>Música relajante</li>
+          <li>Fanático de las atmósferas de fantasía e inmersión</li>
         </ul>
       </div>
     </div>
@@ -2105,17 +2203,31 @@
       personaje: "heiter",
       titulo: "Datil Solution",
       sub: "Cartera de inversiones",
-      desc: "Aplicación de cartera de inversiones con interfaz construida en React y Vite.",
-      tags: ["React", "Vite"],
-      link: null
+      desc: "Cartera de inversiones en pesos: simula compra y venta de acciones, CETES y Bono M, con tasas reales de Banxico y un modelo de riesgo explicable.",
+      puntos: [
+        "API SIE de Banxico: CETES a 28, 91, 182 y 364 días y Bono M a 10 años.",
+        "Bonos por lotes: subasta semanal, órdenes agendadas, cupones y redención.",
+        "Riesgo mínimo: 5 señales dan un puntaje de 0 a 100, calibrado con backtest.",
+        "Sesión JWT con expiración por inactividad y permisos por módulo.",
+        "Asistente de IA (en desarrollo) conectado a modelos en la nube."
+      ],
+      tags: ["React 19", "Vite 8", "Flask 3", "API Banxico", "Yahoo Finance", "JWT", "Recharts"],
+      link: "https://datil-solution.turtlequery.com"
     },
     {
       id: "geologia",
       personaje: "eisen",
       titulo: "Geología UNAM",
       sub: "Sitio web · Guía de localidades mineralógicas",
-      desc: "Sitio web del proyecto de Geología UNAM: guía de localidades mineralógicas. Descripción pendiente.",
-      tags: ["Sitio web"],
+      desc: "Sitio del proyecto PAPIME PE108024 de la Facultad de Ingeniería, UNAM: una guía de excursiones a localidades mineralógicas de México y un libro sobre el acervo histórico del Laboratorio de Mineralogía.",
+      puntos: [
+        "Mapa interactivo de localidades, con los minerales de cada región al pasar el cursor.",
+        "11 guías técnicas de excursión en 7 estados, con visor interactivo.",
+        "Galería de cerca de 400 fotografías de campo por localidad.",
+        "Modelos 3D (Sketchfab) de minerales y equipo histórico, y recorridos virtuales de los edificios J y G.",
+        "Libro del acervo histórico en formato de hojas que se voltean, y página del equipo."
+      ],
+      tags: ["HTML", "CSS", "JavaScript", "Tailwind CSS", "Sketchfab", "PAPIME"],
       link: "https://guia-de-localidades-mineralogicas.github.io/"
     },
     {
@@ -2123,9 +2235,17 @@
       personaje: "frieren",
       titulo: "Coil",
       sub: "Estimador de riesgo de diabetes · Equipo Chaneques",
-      desc: "Web en Flask que estima el riesgo de diabetes a partir de 19 datos del usuario, con un modelo RandomForest. Proyecto del equipo Chaneques.",
-      tags: ["Flask", "RandomForest", "scikit-learn"],
-      link: null
+      desc: "Web en Flask que estima el riesgo de diabetes a partir de 19 datos del usuario. Proyecto del equipo Chaneques.",
+      puntos: [
+        "63,622 registros de indicadores de salud, balanceados entre personas con y sin diabetes (80 % entrenamiento, 20 % prueba).",
+        "Cuatro modelos comparados (K-NN, regresión lineal, Random Forest y XGBoost) con validación cruzada de 5 pliegues y métrica AUC.",
+        "Random Forest (AUC 0.828, sensibilidad 0.81): es el modelo que usa la web, guardado en modelo_diabetes.pkl.",
+        "XGBoost (AUC 0.831, sensibilidad 0.80): el de mayor AUC por solo 0.003; se evaluó en el notebook pero no está en la web.",
+        "Regresión lineal (0.825) y K-NN (0.806): referencia.",
+        "Incluye guía médica y página de resultados."
+      ],
+      tags: ["Flask", "Random Forest", "XGBoost", "scikit-learn", "pandas"],
+      link: "https://coil.turtlequery.com"
     }
   ];
 
@@ -2166,6 +2286,7 @@
         </div>
       </div>
       <p class="desc">${p.desc}</p>
+      ${p.puntos ? `<ul class="puntos">${p.puntos.map(t => `<li>${t}</li>`).join("")}</ul>` : ""}
       <ul class="tags">${p.tags.map(t => `<li>${t}</li>`).join("")}</ul>
       ${p.equipo ? `<h4 class="equipo-t">Equipo</h4>
       <ul class="equipo">${p.equipo.map(m => `<li><a href="https://github.com/${m.gh}" target="_blank" rel="noopener">${m.nombre}<small>@${m.gh}</small></a></li>`).join("")}</ul>` : ""}
