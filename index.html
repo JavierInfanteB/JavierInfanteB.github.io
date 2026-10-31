@@ -47,6 +47,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
+    padding-top: 36vh;                 /* el agujero negro (canvas) ocupa la parte de arriba */
     background: radial-gradient(ellipse at center, var(--forest), var(--ink) 75%);
     z-index: 10;
     cursor: pointer;
@@ -685,7 +686,7 @@
 <div id="intro" role="button" tabindex="0" aria-label="Continuar">
   <canvas id="mana" aria-hidden="true"></canvas>
   <p class="intro-title">JAVIER DE JESÚS INFANTE MARTÍNEZ</p>
-  <p class="intro-sub">Portafolio de Javier</p>
+  <p class="intro-sub">Portafolio con proyectos personales</p>
   <p class="intro-hint">Toca o presiona una tecla para continuar</p>
 </div>
 
@@ -2519,16 +2520,22 @@
   resize();
   window.addEventListener("resize", resize);
 
-  // Escombros que el agujero negro absorbe y desintegra, y pétalos que quedan después
+  // Escombros que el agujero negro absorbe: rocas y estelas en una órbita inclinada
   function crearParticulas() {
-    particulas = Array.from({ length: 150 }, () => ({
-      ang: Math.random() * Math.PI * 2,
-      dist: 0.3 + Math.random() * 0.7,
-      largo: Math.random() * 7 + 3,
-      giro: Math.random() * Math.PI * 2,
-      vgiro: (Math.random() - 0.5) * 0.12,
-      tono: Math.random() > 0.5 ? "#d9a441" : "#b9a6d6"
-    }));
+    particulas = Array.from({ length: 170 }, () => {
+      const roca = Math.random() < 0.3;
+      return {
+        ang: Math.random() * Math.PI * 2,
+        dist: 0.3 + Math.random() * 0.7,
+        largo: roca ? Math.random() * 5 + 4 : Math.random() * 6 + 3,
+        roca,
+        forma: Array.from({ length: 7 }, () => 0.65 + Math.random() * 0.6),
+        giro: Math.random() * Math.PI * 2,
+        vgiro: (Math.random() - 0.5) * 0.08,
+        tono: ["#d9a441", "#b9a6d6", "#e0553a"][Math.floor(Math.random() * 3)],
+        px: 0, py: 0
+      };
+    });
     petalos = Array.from({ length: 36 }, () => ({
       x: Math.random(),
       y: Math.random(),
@@ -2542,22 +2549,23 @@
   const acota = (v) => Math.min(1, Math.max(0, v));
   let inicio = null;
 
-  // Línea de tiempo (ms): 0 escombros en órbita · 500-2300 se abre el agujero ·
-  // 3700-4400 colapso con destello · 4100+ pétalos · 4000+ aparece el nombre (CSS)
-  // Después de eso la intro espera el toque, con los pétalos flotando.
+  // Línea de tiempo (ms): 0 escombros en órbita · 500-2300 se abre el agujero (y se queda,
+  // girando de fondo) · 4100+ pétalos · 4000+ aparece el nombre (CSS).
+  // Las partículas del lado cercano (abajo) se dibujan encima del disco negro y las del lado
+  // lejano (arriba) por detrás: así la órbita rodea al agujero y no queda todo atrás.
   function dibujar(ts) {
     if (inicio === null) inicio = ts;
     const t = ts - inicio;
     const abre = acota((t - 500) / 1800);
-    const colapso = acota((t - 3700) / 700);
     const k = acota(t / 3700);
     const w = canvas.width;
     const h = canvas.height;
     const cx = w / 2;
-    const cy = h / 2;
+    const cy = h * 0.36;                 // el agujero queda arriba; el nombre va debajo
     const lado = Math.min(w, h);
     const radio = lado * 0.45;
-    const horizonte = lado * 0.11 * abre * (1 - colapso);
+    const horizonte = lado * 0.11 * abre;
+    const INCL = 0.34;                   // inclinación de la órbita
 
     ctx.clearRect(0, 0, w, h);
 
@@ -2589,58 +2597,94 @@
     }
     ctx.restore();
 
-    // Halo ámbar alrededor del horizonte
+    // Disco de acreción: resplandor ámbar aplastado por la inclinación
     if (horizonte > 1) {
-      const halo = ctx.createRadialGradient(cx, cy, horizonte, cx, cy, horizonte * 3);
-      halo.addColorStop(0, "rgba(217, 164, 65, 0.55)");
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(1, 0.62);
+      const halo = ctx.createRadialGradient(0, 0, horizonte, 0, 0, horizonte * 3.6);
+      halo.addColorStop(0, "rgba(240, 150, 60, 0.7)");
+      halo.addColorStop(0.35, "rgba(217, 164, 65, 0.35)");
       halo.addColorStop(1, "rgba(217, 164, 65, 0)");
       ctx.fillStyle = halo;
       ctx.beginPath();
-      ctx.arc(cx, cy, horizonte * 3, 0, Math.PI * 2);
+      ctx.arc(0, 0, horizonte * 3.6, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
     }
 
-    // Escombros: giran, se encogen al acercarse y se desintegran en el horizonte
-    if (colapso < 1) {
-      particulas.forEach(p => {
-        p.ang += (0.008 + 0.035 * k) / Math.max(p.dist, 0.2);
-        p.dist -= abre * (0.0012 + 0.0045 * k);
-        p.giro += p.vgiro;
-        if (p.dist < 0.1) p.dist = 1;
-        const r = p.dist * radio;
-        const x = cx + Math.cos(p.ang) * r;
-        const y = cy + Math.sin(p.ang) * r * 0.4;
-        const cerca = acota((p.dist - 0.1) / 0.3);
-        const dx = Math.cos(p.giro) * p.largo * cerca;
-        const dy = Math.sin(p.giro) * p.largo * cerca;
-        ctx.globalAlpha = cerca * (1 - colapso) * acota(t / 600);
-        ctx.strokeStyle = p.tono;
+    // Escombros: dist = distancia relativa; se estiran y aceleran al caer, y se apagan en el horizonte
+    const puntos = particulas.map(p => {
+      p.ang += (0.008 + 0.035 * k) / Math.max(p.dist, 0.2);
+      p.dist -= abre * (0.0012 + 0.0045 * k);
+      p.giro += p.vgiro;
+      const r = p.dist * radio;
+      if (r < horizonte * 1.05 + 4) { p.dist = 0.75 + Math.random() * 0.25; p.px = 0; }
+      const rr = p.dist * radio;
+      const x = cx + Math.cos(p.ang) * rr;
+      const y = cy + Math.sin(p.ang) * rr * INCL;
+      const cerca = acota((rr - horizonte) / (radio * 0.1));
+      const o = { p, x, y, cerca, frente: Math.sin(p.ang) > 0 };
+      return o;
+    });
+
+    function pintar(o) {
+      const { p, x, y, cerca } = o;
+      const alfa = cerca * acota(t / 600);
+      if (alfa <= 0) return;
+      ctx.globalAlpha = alfa;
+      if (p.roca) {
+        // roca: polígono irregular crema con contorno oscuro, como en la referencia
+        const s = p.largo * (0.5 + 0.5 * cerca);
+        ctx.fillStyle = "#e9dcc0";
+        ctx.strokeStyle = "#05080a";
         ctx.lineWidth = 1.5;
         ctx.beginPath();
-        ctx.moveTo(x - dx, y - dy);
-        ctx.lineTo(x + dx, y + dy);
+        p.forma.forEach((f, i) => {
+          const a = p.giro + (i / p.forma.length) * Math.PI * 2;
+          const px = x + Math.cos(a) * s * f;
+          const py = y + Math.sin(a) * s * f * 0.8;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        });
+        ctx.closePath();
+        ctx.fill();
         ctx.stroke();
-      });
+      }
+      // estela hacia atrás; se alarga con la velocidad (más cerca del centro, más larga)
+      if (p.px) {
+        const largoEstela = 2 + 3 * (1 - p.dist);
+        ctx.strokeStyle = p.tono;
+        ctx.lineWidth = p.roca ? 1 : 1.6;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + (p.px - x) * largoEstela, y + (p.py - y) * largoEstela);
+        ctx.stroke();
+      }
+      p.px = x; p.py = y;
     }
 
-    // Horizonte: disco negro
+    // lado lejano (por detrás del agujero)
+    puntos.filter(o => !o.frente).forEach(pintar);
+
+    // Horizonte: disco negro, con anillo de luz fino
     ctx.globalAlpha = 1;
     ctx.fillStyle = "#05080a";
     ctx.beginPath();
     ctx.arc(cx, cy, horizonte, 0, Math.PI * 2);
     ctx.fill();
-
-    // Destello al colapsar
-    if (colapso > 0) {
-      const f = Math.sin(colapso * Math.PI);
-      const destello = ctx.createRadialGradient(cx, cy, 0, cx, cy, lado * 0.6);
-      destello.addColorStop(0, `rgba(244, 239, 226, ${0.85 * f})`);
-      destello.addColorStop(1, "rgba(244, 239, 226, 0)");
-      ctx.fillStyle = destello;
-      ctx.fillRect(0, 0, w, h);
+    if (horizonte > 1) {
+      ctx.strokeStyle = "rgba(240, 190, 100, 0.8)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, horizonte + 1, 0, Math.PI * 2);
+      ctx.stroke();
     }
 
-    // Pétalos que flotan hacia arriba después del colapso
+    // lado cercano (por delante del agujero)
+    puntos.filter(o => o.frente).forEach(pintar);
+    ctx.globalAlpha = 1;
+
+    // Pétalos que flotan hacia arriba
     const flor = acota((t - 4100) / 800);
     if (flor > 0) {
       petalos.forEach(p => {
