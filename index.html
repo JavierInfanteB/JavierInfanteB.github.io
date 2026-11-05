@@ -679,6 +679,15 @@
     .opt, .card, .ficha, .card::after, .link, .back { transition: none; }
     #intro { transition: none; }
   }
+
+  /* Selector de idioma */
+  .idioma {
+    position: fixed; top: .9rem; right: .9rem; z-index: 2000;
+    font: 700 .85rem/1 var(--display); letter-spacing: .08em;
+    color: var(--cream); background: rgba(20, 28, 24, .75); border: 1px solid var(--amber);
+    border-radius: 999px; padding: .5rem .8rem; cursor: pointer; backdrop-filter: blur(4px);
+  }
+  .idioma:hover, .idioma:focus-visible { background: var(--amber); color: var(--ink); outline: none; }
 </style>
 </head>
 <body>
@@ -2048,6 +2057,139 @@
 </main>
 
 <script>
+  window.DICCIONARIO_EN = {
+  "Javier Infante · Portafolio": "Javier Infante · Portfolio",
+  "Portafolio con proyectos personales": "Portfolio of personal projects",
+  "Toca o presiona una tecla para continuar": "Tap or press a key to continue",
+  "Continuar": "Continue",
+  "Portafolio": "Portfolio",
+  "Elige un capítulo del viaje": "Choose a chapter of the journey",
+  "PROYECTOS": "PROJECTS",
+  "Cuatro capítulos": "Four chapters",
+  "SOBRE MÍ": "ABOUT ME",
+  "Estudios y gustos": "Studies and interests",
+  "ENLACES": "LINKS",
+  "GitHub, LinkedIn y contacto": "GitHub, LinkedIn and contact",
+  "Proyectos": "Projects",
+  "Selecciona un proyecto para leer su ficha": "Select a project to read its card",
+  "← Volver al menú": "← Back to menu",
+  "← Volver a proyectos": "← Back to projects",
+  "Sobre mí": "About me",
+  "Lo que me mueve fuera del código": "What drives me outside of code",
+  "ESTUDIOS": "STUDIES",
+  "Ingeniería en Computación · UNAM": "Computer Engineering · UNAM",
+  "11.º semestre": "11th semester",
+  "Me tomé mi tiempo en la carrera para llenarla de lo que me gusta:": "I took my time in the degree to fill it with what I like:",
+  "Bases de datos": "Databases",
+  "BD avanzadas": "Advanced databases",
+  "Lenguaje natural y LLMs (por mi cuenta)": "Natural language and LLMs (on my own)",
+  "GUSTOS": "INTERESTS",
+  "Me gustan la dificultad y los retos autoimpuestos.": "I like difficulty and self-imposed challenges.",
+  "Ajedrez": "Chess",
+  "Voleibol": "Volleyball",
+  "ARTE Y MÚSICA": "ART AND MUSIC",
+  "Trabajo mejor con música relajante, y al terminar un reto disfruto su arte y su música.": "I work best with relaxing music, and after finishing a challenge I enjoy its art and its music.",
+  "Amante de Ado": "Ado fan",
+  "Música relajante": "Relaxing music",
+  "Fanático de las atmósferas de fantasía e inmersión": "Fan of fantasy and immersive atmospheres",
+  "Enlaces": "Links",
+  "Dónde encontrarme": "Where to find me",
+  "NEGOCIO PERSONAL": "PERSONAL BUSINESS",
+  "Consultorías · Turtlequery": "Consulting · Turtlequery",
+  "Ver proyecto": "View project",
+  "Enlace pendiente": "Link pending",
+  "Equipo": "Team"
+};
+</script>
+<script>
+// Selector de idioma (español / inglés). Traduce con el diccionario de la página (window.DICCIONARIO_EN: clave = texto en español).
+// La preferencia se guarda en el navegador; ?lang=en o ?lang=es la fija (sirve para ligas entre nuestros sitios).
+(() => {
+  const DICC = window.DICCIONARIO_EN || {};
+  const normal = (s) => s.replace(/\s+/g, ' ').trim();
+  // Textos con números que cambian (el límite de preguntas sale de la configuración): la clave lleva {n} en lugar de cada número.
+  const NUMEROS = /\d+(?:[.,]\d+)?/g;
+  const buscar = (clave) => {
+    if (DICC[clave]) return DICC[clave];
+    const numeros = clave.match(NUMEROS);
+    const plantilla = numeros && DICC[clave.replace(NUMEROS, '{n}')];
+    if (!plantilla) return undefined;
+    let i = 0;
+    return plantilla.replace(/\{n\}/g, () => numeros[i++]);
+  };
+  const ATRIBUTOS = ['placeholder', 'aria-label', 'title', 'alt'];
+  const META = 'meta[name="description"], meta[property="og:title"], meta[property="og:description"]';
+  const originales = new Map();  // nodo o [elemento, atributo] -> texto en español
+  let lang = 'es';
+  const tituloEs = document.title;
+  try {
+    const q = new URLSearchParams(location.search).get('lang');
+    lang = q === 'en' || q === 'es' ? q : (localStorage.getItem('idioma') === 'en' ? 'en' : 'es');
+  } catch { /* sin almacenamiento: se queda en español */ }
+
+  const cambiar = (nodo, atributo, valor) => (atributo ? nodo.setAttribute(atributo, valor) : (nodo.nodeValue = valor));
+  const traducir = (nodo, atributo, original) => {
+    const clave = normal(original);
+    const en = buscar(clave);
+    if (!en) return;
+    if (!originales.has(nodo)) originales.set(nodo, new Map());
+    originales.get(nodo).set(atributo, original);
+    cambiar(nodo, atributo, original.match(/^\s*/)[0] + en + original.match(/\s*$/)[0]);  // conserva los espacios de los lados
+  };
+  const recorrer = () => {
+    const arbol = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement && !n.parentElement.closest('script, style, svg') && normal(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+    });
+    const nodos = [];
+    while (arbol.nextNode()) nodos.push(arbol.currentNode);
+    nodos.forEach((n) => traducir(n, '', n.nodeValue));
+    document.querySelectorAll(ATRIBUTOS.map((a) => `[${a}]`).join(',')).forEach((el) => ATRIBUTOS.forEach((a) => el.hasAttribute(a) && traducir(el, a, el.getAttribute(a))));
+    document.querySelectorAll('a[data-texto-en]').forEach((a) => {  // el mensaje precargado de WhatsApp sale en inglés
+      const href = a.getAttribute('href');
+      if (!originales.has(a)) originales.set(a, new Map());
+      originales.get(a).set('href', href);
+      a.setAttribute('href', href.split('?text=')[0] + '?text=' + encodeURIComponent(a.dataset.textoEn));
+    });
+    document.querySelectorAll(META).forEach((el) => traducir(el, 'content', el.getAttribute('content') || ''));
+  };
+  const restaurar = () => {
+    originales.forEach((atributos, nodo) => atributos.forEach((original, atributo) => cambiar(nodo, atributo, original)));
+    originales.clear();
+    if (tituloEs) document.title = tituloEs;
+  };
+
+  const aplicar = (nuevo) => {
+    restaurar();
+    lang = nuevo;
+    document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+    if (lang === 'en') {
+      recorrer();
+      if (buscar(normal(tituloEs))) document.title = buscar(normal(tituloEs));
+    }
+    try { localStorage.setItem('idioma', lang); } catch { /* da igual */ }
+    boton.textContent = lang === 'en' ? 'ES' : 'EN';
+    boton.setAttribute('aria-label', lang === 'en' ? 'Cambiar a español' : 'Switch to English');
+    boton.lang = lang === 'en' ? 'es' : 'en';
+    document.dispatchEvent(new CustomEvent('idioma', { detail: lang }));
+  };
+
+  const boton = document.createElement('button');
+  boton.type = 'button';
+  boton.className = 'idioma';
+  boton.addEventListener('click', () => aplicar(lang === 'en' ? 'es' : 'en'));
+
+  // Lo usa app.js para los textos que arma al vuelo (avisos, errores): en español devuelve el mismo texto.
+  window.idiomaActual = () => lang;
+  window.traducir = (es) => (lang === 'en' && buscar(normal(es))) || es;
+
+  const iniciar = () => {
+    (document.querySelector('.cabecera .menu') || document.querySelector('.cabecera') || document.body).append(boton);
+    aplicar(lang);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
+})();
+</script>
+<script>
   // ---------- Armas (dibujos originales; se usan en el menú de inicio y en los chibis) ----------
   // Frieren: báculo rojo con media luna dorada y gema roja. Fern: báculo de madera con listones morados.
   // Himmel: espada. Stark y Eisen: hachas de doble filo. Heiter: báculo de sacerdote (diseño aproximado).
@@ -2271,6 +2413,50 @@
     }
   ];
 
+  const PROYECTOS_EN = {
+  "boveda": {
+    "sub": "Cryptography · Team 4 · UNAM",
+    "desc": "Digital vault that protects documents with modern cryptographic techniques. Academic project for the Cryptography course, Faculty of Engineering, UNAM. This delivery implements the symmetric encryption module."
+  },
+  "datil": {
+    "sub": "Investment portfolio",
+    "desc": "Investment portfolio in Mexican pesos: it simulates buying and selling stocks, CETES and M Bonds, with real Banxico rates and an explainable risk model.",
+    "puntos": [
+      "Banxico SIE API: CETES at 28, 91, 182 and 364 days and the 10-year M Bond.",
+      "Bonds in batches: weekly auction, scheduled orders, coupons and redemption.",
+      "Minimum risk: 5 signals give a score from 0 to 100, calibrated with backtesting.",
+      "JWT session with inactivity expiry and per-module permissions.",
+      "AI assistant (in development) connected to cloud models."
+    ]
+  },
+  "geologia": {
+    "sub": "Website · Guide to mineralogical localities",
+    "desc": "Site for PAPIME project PE108024 of the Faculty of Engineering, UNAM: a guide to field trips to mineralogical localities in Mexico and a book about the historical collection of the Mineralogy Laboratory.",
+    "puntos": [
+      "Interactive map of localities, showing each region's minerals on hover.",
+      "11 technical field-trip guides across 7 states, with an interactive viewer.",
+      "Gallery of about 400 field photographs by locality.",
+      "3D models (Sketchfab) of minerals and historical equipment, and virtual tours of buildings J and G.",
+      "Book of the historical collection in a page-turning format, and a team page."
+    ]
+  },
+  "coil": {
+    "sub": "Diabetes risk estimator · Chaneques Team",
+    "desc": "Flask web app that estimates diabetes risk from 19 user inputs. Project of the Chaneques team.",
+    "puntos": [
+      "63,622 health indicator records, balanced between people with and without diabetes (80 % training, 20 % test).",
+      "Four models compared (K-NN, linear regression, Random Forest and XGBoost) with 5-fold cross-validation and the AUC metric.",
+      "Random Forest (AUC 0.828, sensitivity 0.81): the model the web app uses, saved in modelo_diabetes.pkl.",
+      "XGBoost (AUC 0.831, sensitivity 0.80): the highest AUC by only 0.003; it was evaluated in the notebook but is not in the web app.",
+      "Linear regression (0.825) and K-NN (0.806): reference.",
+      "Includes a medical guide and a results page."
+    ]
+  }
+};
+  const enIngles = () => window.idiomaActual && window.idiomaActual() === "en";
+  const dato = (p) => (enIngles() ? { ...p, ...PROYECTOS_EN[p.id] } : p);
+  const tr = (es) => (window.traducir ? window.traducir(es) : es);
+
   // ---------- Render ----------
   document.querySelectorAll("[data-arma]").forEach(el => {
     el.innerHTML = armaSVG(el.dataset.arma);
@@ -2287,17 +2473,24 @@
     b.type = "button";
     b.className = "card";
     b.dataset.proyecto = p.id;
-    b.innerHTML = `${haloHTML(p.personaje)}<span class="chibi">${CHIBIS[p.personaje].svg}</span><h3>${p.titulo}</h3><p>${p.sub}</p>`;
+    b.innerHTML = `${haloHTML(p.personaje)}<span class="chibi">${CHIBIS[p.personaje].svg}</span><h3>${p.titulo}</h3><p>${dato(p).sub}</p>`;
     grid.appendChild(b);
   });
 
   const fichaEl = document.getElementById("ficha");
+  document.addEventListener("idioma", () => {
+    grid.querySelectorAll(".card").forEach(b => { b.querySelector("p").textContent = dato(PROYECTOS.find(x => x.id === b.dataset.proyecto)).sub; });
+    if (fichaActual && !document.getElementById("ficha-view").hidden) mostrarFicha(fichaActual);
+  });
+  let fichaActual = null;
   function mostrarFicha(id) {
-    const p = PROYECTOS.find(x => x.id === id);
-    if (!p) return;
+    const base = PROYECTOS.find(x => x.id === id);
+    if (!base) return;
+    fichaActual = id;
+    const p = dato(base);
     const enlace = p.link
-      ? `<a class="link" href="${p.link}" target="_blank" rel="noopener">Ver proyecto</a>`
-      : `<span class="link" aria-disabled="true">Enlace pendiente</span>`;
+      ? `<a class="link" href="${p.link}" target="_blank" rel="noopener">${tr("Ver proyecto")}</a>`
+      : `<span class="link" aria-disabled="true">${tr("Enlace pendiente")}</span>`;
     fichaEl.innerHTML = `
       ${haloHTML(p.personaje)}
       <div class="ficha-head">
@@ -2310,7 +2503,7 @@
       <p class="desc">${p.desc}</p>
       ${p.puntos ? `<ul class="puntos">${p.puntos.map(t => `<li>${t}</li>`).join("")}</ul>` : ""}
       <ul class="tags">${p.tags.map(t => `<li>${t}</li>`).join("")}</ul>
-      ${p.equipo ? `<h4 class="equipo-t">Equipo</h4>
+      ${p.equipo ? `<h4 class="equipo-t">${tr("Equipo")}</h4>
       <ul class="equipo">${p.equipo.map(m => `<li><a href="https://github.com/${m.gh}" target="_blank" rel="noopener">${m.nombre}<small>@${m.gh}</small></a></li>`).join("")}</ul>` : ""}
       ${enlace}`;
     show("ficha-view");
