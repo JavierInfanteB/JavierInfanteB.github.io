@@ -1915,7 +1915,7 @@
         <nav class="menu">
           <button class="opt" type="button" data-go="proyectos">
             <span class="arma" data-arma="frieren"></span>
-            <span>PROYECTOS<small>Cuatro capítulos</small></span>
+            <span>PROYECTOS<small>Cinco capítulos</small></span>
           </button>
           <button class="opt" type="button" data-go="sobre">
             <span class="arma" data-arma="fern"></span>
@@ -2058,7 +2058,7 @@
   "Portafolio": "Portfolio",
   "Elige un capítulo del viaje": "Choose a chapter of the journey",
   "PROYECTOS": "PROJECTS",
-  "Cuatro capítulos": "Four chapters",
+  "Cinco capítulos": "Five chapters",
   "SOBRE MÍ": "ABOUT ME",
   "Estudios y gustos": "Studies and interests",
   "ENLACES": "LINKS",
@@ -2403,6 +2403,22 @@
       ],
       tags: ["Flask", "Random Forest", "XGBoost", "scikit-learn", "pandas"],
       link: "https://coil.turtlequery.com"
+    },
+    {
+      id: "asistente",
+      personaje: "fern",
+      titulo: "Asistente virtual de citas",
+      sub: "Charvis · Groq y Gemini · Turtlequery",
+      desc: "Asistente virtual que atiende a los clientes por chat y por voz y agenda citas solo. Usa las APIs de Groq y Gemini como modelos en la nube, con respaldo automático de uno al otro.",
+      puntos: [
+        "Groq y Gemini en cadena: si un modelo falla o se queda sin cupo, responde el siguiente.",
+        "Citas reales: ofrece solo horarios libres de Google Calendar y crea el evento al confirmar.",
+        "El código valida día y hora, no el modelo: dos clientes no pueden tomar el mismo horario.",
+        "Panel para cancelar citas y recibir solicitudes de cotización.",
+        "Respuestas por voz, con transcripción de lo que dice el cliente.",
+        "Voz clonada con Voicebox y Qwen3-TTS, que se escucha mientras el modelo aún escribe la respuesta."
+      ],
+      tags: ["Groq", "Gemini", "Google Calendar", "Voicebox", "Qwen3-TTS", "Python", "Docker"]
     }
   ];
 
@@ -2444,6 +2460,18 @@
       "Linear regression (0.825) and K-NN (0.806): reference.",
       "Includes a medical guide and a results page."
     ]
+  },
+  "asistente": {
+    "sub": "Charvis · Groq and Gemini · Turtlequery",
+    "desc": "Virtual assistant that serves customers by chat and voice and books appointments on its own. It uses the Groq and Gemini APIs as cloud models, with automatic fallback from one to the other.",
+    "puntos": [
+      "Groq and Gemini in a chain: if one model fails or runs out of quota, the next one answers.",
+      "Real appointments: it offers only free Google Calendar slots and creates the event on confirmation.",
+      "The code validates day and time, not the model: two customers cannot take the same slot.",
+      "Panel to cancel appointments and receive quote requests.",
+      "Spoken replies, with transcription of what the customer says.",
+      "Voice cloned with Voicebox and Qwen3-TTS, streamed while the model is still writing the answer."
+    ]
   }
 };
   const enIngles = () => window.idiomaActual && window.idiomaActual() === "en";
@@ -2483,7 +2511,7 @@
     const p = dato(base);
     const enlace = p.link
       ? `<a class="link" href="${p.link}" target="_blank" rel="noopener">${tr("Ver proyecto")}</a>`
-      : `<span class="link" aria-disabled="true">${tr("Enlace pendiente")}</span>`;
+      : "";
     fichaEl.innerHTML = `
       ${haloHTML(p.personaje)}
       <div class="ficha-head">
